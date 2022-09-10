@@ -103,7 +103,9 @@
                 Grid.Column="1" Grid.ColumnSpan="3"
                 Width="500"
                 Height="60"
-                FontSize="30" Background="#FF52C3A8"/>
+                FontSize="30"
+                Click="btn_authoriz_Click"
+                Background="#FF52C3A8"/>
         <TextBlock Text="Принять участие"
                    Grid.Row="9"
                    Grid.Column="1" Grid.ColumnSpan="3"

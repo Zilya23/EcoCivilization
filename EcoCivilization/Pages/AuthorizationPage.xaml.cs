@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cora;
+using Cora.DataBase;
+
 
 namespace EcoCivilization.Pages
 {
@@ -20,9 +23,17 @@ namespace EcoCivilization.Pages
     /// </summary>
     public partial class AuthorizationPage : Page
     {
+        public static User user;
         public AuthorizationPage()
         {
             InitializeComponent();
+        }
+
+        private void btn_authoriz_Click(object sender, RoutedEventArgs e)
+        {
+            string login = tb_Login.Text.Trim();
+            string password = tb_Pass.Text.Trim();
+
         }
     }
 }

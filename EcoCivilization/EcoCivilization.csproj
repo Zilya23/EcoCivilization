@@ -131,6 +131,12 @@
     <Resource Include="img\icon2.png" />
     <Resource Include="img\icon3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cora\Cora.csproj">
+      <Project>{8c0b9b62-eff7-4d4c-90ea-f1b45e2d3d54}</Project>
+      <Name>Cora</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
