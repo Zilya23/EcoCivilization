@@ -43,5 +43,20 @@ namespace EcoCivilization.Pages
                 MessageBox.Show("Ne Hehe");
             }
         }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new RegistrationPage());
+        }
+
+        private void TextBlock_MouseLeave(object sender, MouseEventArgs e)
+        {
+            tb_reg.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
+        }
+
+        private void TextBlock_MouseEnter(object sender, MouseEventArgs e)
+        {
+            tb_reg.Foreground = new SolidColorBrush(Colors.ForestGreen);
+        }
     }
 }
