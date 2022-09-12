@@ -33,7 +33,15 @@ namespace EcoCivilization.Pages
         {
             string login = tb_Login.Text.Trim();
             string password = tb_Pass.Text.Trim();
-
+            user = Authorization.AuthorizationUser(login, password);
+            if(user != null)
+            {
+                MessageBox.Show("Hehe");
+            }
+            else
+            {
+                MessageBox.Show("Ne Hehe");
+            }
         }
     }
 }
