@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cora.DataBase;
+using Cora;
 
 namespace EcoCivilization.Pages
 {
@@ -20,9 +22,13 @@ namespace EcoCivilization.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        List<City> cities = new List<City>(); 
         public RegistrationPage()
         {
             InitializeComponent();
+            cities = CityFunction.GetCities();
+            cb_City.ItemsSource = cities;
+            cb_City.DisplayMemberPath = "Name";
         }
 
         private void tb_back_MouseDown(object sender, MouseButtonEventArgs e)

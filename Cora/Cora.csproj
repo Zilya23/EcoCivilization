@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="CityFunction.cs" />
     <Compile Include="DataBase\Application.cs">
       <DependentUpon>EcoBase.tt</DependentUpon>
     </Compile>

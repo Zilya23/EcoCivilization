@@ -86,6 +86,66 @@
                  HorizontalAlignment="Center"
                  FontSize="30"
                  Foreground="#FFCFF4D2"
-                 Width="206" />
+                 Width="400" 
+                 BorderBrush="#FFCFF4D2" 
+                 SelectionBrush="#FFCFF4D2" />
+
+        <TextBlock Text="Фамилия"
+                   Grid.Column="0"
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 10, 0"
+                   Foreground="#FFCFF4D2"
+                   FontSize="35"/>
+        <TextBox x:Name="tb_lastName"
+                 Grid.Column="1" Grid.ColumnSpan="2"
+                 Grid.Row="4"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 FontSize="30"
+                 Foreground="#FFCFF4D2"
+                 Width="400" 
+                 BorderBrush="#FFCFF4D2" 
+                 SelectionBrush="#FFCFF4D2"/>
+
+        <TextBlock Text="Телефон"
+                   Grid.Column="0"
+                   Grid.Row="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 10, 0"
+                   Foreground="#FFCFF4D2"
+                   FontSize="35"/>
+        <TextBox x:Name="tb_tel"
+                 Grid.Column="1" Grid.ColumnSpan="2"
+                 Grid.Row="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 FontSize="30"
+                 Foreground="#FFCFF4D2"
+                 Width="400" 
+                 BorderBrush="#FFCFF4D2" 
+                 SelectionBrush="#FFCFF4D2"/>
+
+        <TextBlock Text="Город"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 10, 0"
+                   Foreground="#FFCFF4D2"
+                   FontSize="35"/>
+        <ComboBox Name="cb_City"
+                  Grid.Column="1" Grid.ColumnSpan="2"
+                  Grid.Row="6"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  FontSize="30"
+                  IsEditable="True"
+                  StaysOpenOnEdit="True"
+                  Foreground="#FFCFF4D2"
+                  Width="400" 
+                  BorderBrush="#FFCFF4D2"/>
     </Grid>
 </Page>
