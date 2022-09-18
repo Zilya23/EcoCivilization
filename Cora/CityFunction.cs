@@ -14,5 +14,11 @@ namespace Cora
             List<City> cities = bd_connection.connection.City.ToList();
             return cities;
         }
+
+        public static List<Gender> GetGenders()
+        {
+            List<Gender> genders = bd_connection.connection.Gender.ToList();
+            return genders;
+        }
     }
 }

@@ -22,13 +22,17 @@ namespace EcoCivilization.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
-        List<City> cities = new List<City>(); 
+        List<City> cities = new List<City>();
+        List<Gender> genders = new List<Gender>();
         public RegistrationPage()
         {
             InitializeComponent();
             cities = CityFunction.GetCities();
             cb_City.ItemsSource = cities;
             cb_City.DisplayMemberPath = "Name";
+            genders = CityFunction.GetGenders();
+            cb_gender.ItemsSource = genders;
+            cb_gender.DisplayMemberPath = "Name";
         }
 
         private void tb_back_MouseDown(object sender, MouseButtonEventArgs e)
