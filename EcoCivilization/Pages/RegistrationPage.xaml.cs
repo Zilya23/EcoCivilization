@@ -49,5 +49,100 @@ namespace EcoCivilization.Pages
         {
             tb_back.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
         }
+
+        private void btn_regist_Click(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+            user.Name = tb_name.Text.Trim();
+            user.Surname = tb_lastName.Text.Trim();
+            user.Telephone = tb_tel.Text.Trim();
+            user.ID_Role = 2;
+            user.Count_Application = 0;
+            user.Login = tb_log.Text.Trim();
+            user.Password = tb_pass.Text.Trim();
+            if(cb_City.SelectedItem != null)
+            {
+                var userCity = cb_City.SelectedItem as City;
+                user.ID_City = userCity.ID;
+            }
+            else
+            {
+                MessageBox.Show("Выберите город");
+            }
+            if(cb_gender.SelectedItem != null)
+            {
+                var userGender = cb_gender.SelectedItem as Gender;
+                user.ID_Gender = userGender.ID;
+            }
+            else
+            {
+                MessageBox.Show("Выберите пол");
+            }
+            if (TelephoneCorrect(user.Telephone))
+            {
+                if (AllWrite(user))
+                {
+                    if (RegistrationFunction.Registration(user))
+                    {
+                        MessageBox.Show("Регистрация прошла успешно!");
+                        NavigationService.Navigate(new AuthorizationPage());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите другой логин или телефон");
+                    }
+                }
+            }
+        }
+
+        public bool AllWrite(User user)
+        {
+            if(user.Name.Length ==0)
+            {
+                MessageBox.Show("Заполните имя");
+                return false;
+            }
+            else if(user.Surname.Length == 0)
+            {
+                MessageBox.Show("Заполните фамилию");
+                return false;
+            }
+            else if (user.Telephone.Length == 0)
+            {
+                MessageBox.Show("Заполните телефон");
+                return false;
+            }
+            else if (user.Login.Length == 0)
+            {
+                MessageBox.Show("Заполните логин");
+                return false;
+            }
+            else if (user.Password.Length == 0)
+            {
+                MessageBox.Show("Заполните пароль");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool TelephoneCorrect(string telephone)
+        {
+            if(telephone.Length == 11 && telephone[0] == '8')
+            {
+                return true;
+            }
+            else if(telephone.Length == 12 && telephone[0] == '+' && telephone[1] == '7')
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Введите верный телефон");
+                return false;
+            }
+        }
     }
 }

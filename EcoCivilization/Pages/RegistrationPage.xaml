@@ -202,5 +202,15 @@
                  Width="400" 
                  BorderBrush="#FFCFF4D2" 
                  SelectionBrush="#FFCFF4D2"/>
+        <Button x:Name="btn_regist"
+                Content="Зарегистрироваться"
+                Foreground="#FF52C3A8"
+                Grid.Row="9"
+                Grid.Column="2" Grid.ColumnSpan="3"
+                Width="500"
+                Height="80"
+                FontSize="30"
+                Background="#FFCFF4D2"
+                Click="btn_regist_Click"/>
     </Grid>
 </Page>
