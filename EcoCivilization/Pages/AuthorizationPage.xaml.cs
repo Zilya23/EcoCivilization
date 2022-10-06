@@ -37,6 +37,7 @@ namespace EcoCivilization.Pages
             if(user != null)
             {
                 MessageBox.Show("Hehe");
+                NavigationService.Navigate(new MainApplicationPage());
             }
             else
             {
