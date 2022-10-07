@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cora;
+using Cora.DataBase;
 
 namespace EcoCivilization.Pages
 {
@@ -20,9 +22,17 @@ namespace EcoCivilization.Pages
     /// </summary>
     public partial class MainApplicationPage : Page
     {
+        public static List<Cora.DataBase.Application> applicationList {get; set;}
         public MainApplicationPage()
         {
             InitializeComponent();
+            applicationList = ApplicationFunction.GetAllApplications();
+            this.DataContext = this;
+        }
+
+        private void lv_applications_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

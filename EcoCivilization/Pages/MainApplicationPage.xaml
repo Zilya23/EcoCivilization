@@ -70,5 +70,38 @@
                 HorizontalAlignment="Center" Height="111" Width="114">
             <Image Source="/img/statistic.png" Width="40"/>
         </Button>
+
+        <ListView x:Name="lv_applications" 
+                  ItemsSource="{Binding applicationList}" 
+                  Grid.Row="3" Grid.RowSpan="12"
+                  Grid.Column="1" Grid.ColumnSpan="12"
+                  SelectionChanged="lv_applications_SelectionChanged">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="300">
+                        <Image Source="{Binding Photo1}" Width="300" Height="300"/>
+                        <Image Source="{Binding Photo2}" Width="300" Height="300"/>
+                        <Image Source="{Binding Photo3}" Width="300" Height="300"/>
+                        <TextBlock Text="{Binding Name}" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="20" 
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Description}" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="20" 
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationFunction.cs" />
     <Compile Include="Authorization.cs" />
     <Compile Include="CityFunction.cs" />
     <Compile Include="DataBase\Application.cs">
