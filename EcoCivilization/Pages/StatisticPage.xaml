@@ -9,6 +9,13 @@
       Title="StatisticPage">
 
     <Grid>
+        <WrapPanel Name="wpFoto" ItemHeight="130" ItemWidth="130">
+            <Image x:Name="imgFirst"
+                   Source="C:\Users\ЗиляЗавр\source\repos\EcoCivilization\EcoCivilization\img\znak.png"/>
+            <Image x:Name="imgSecond"/>
+            <Image x:Name="imgThirst"
+                   Source="C:\Users\ЗиляЗавр\source\repos\EcoCivilization\EcoCivilization\img\plus.png"/>
+        </WrapPanel>
         
     </Grid>
 </Page>
