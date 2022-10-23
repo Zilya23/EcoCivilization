@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationFunction.cs" />
-    <Compile Include="Authorization.cs" />
-    <Compile Include="CityFunction.cs" />
+    <Compile Include="Functions\ApplicationFunction.cs" />
+    <Compile Include="Functions\Authorization.cs" />
+    <Compile Include="Functions\CityFunction.cs" />
     <Compile Include="DataBase\Application.cs">
       <DependentUpon>EcoBase.tt</DependentUpon>
     </Compile>
@@ -94,7 +94,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationFunction.cs" />
+    <Compile Include="Functions\RegistrationFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

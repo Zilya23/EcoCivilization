@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cora.DataBase;
+using Cora.Functions;
 
 namespace EcoCivilization.Pages
 {
@@ -23,6 +25,23 @@ namespace EcoCivilization.Pages
         public AddApplicationPage()
         {
             InitializeComponent();
+
+            List<City> cities = CityFunction.GetCities();
+        }
+
+        private void btnMainApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainApplicationPage());
+        }
+
+        private void btnStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StatisticPage());
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
         }
     }
 }
