@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Cora.DataBase;
 
-namespace Cora
+namespace Cora.Functionss
 {
-    public class ApplicationFunction
+    public class AplicationFunction
     {
         public static List<Application> GetAllApplications()
         {

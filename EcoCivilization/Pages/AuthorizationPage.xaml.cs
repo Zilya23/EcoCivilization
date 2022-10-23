@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Cora;
+using Cora.Functionss;
 using Cora.DataBase;
 
 
@@ -33,7 +33,7 @@ namespace EcoCivilization.Pages
         {
             string login = tb_Login.Text.Trim();
             string password = tb_Pass.Text.Trim();
-            user = Authorization.AuthorizationUser(login, password);
+            user = AuthorizationFunction.AuthorizationUser(login, password);
             if(user != null)
             {
                 Properties.Settings.Default.Login = user.Login;

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Cora.DataBase;
-using Cora;
+using Cora.Functionss;
 
 namespace EcoCivilization.Pages
 {
@@ -27,10 +27,10 @@ namespace EcoCivilization.Pages
         public RegistrationPage()
         {
             InitializeComponent();
-            cities = CityFunction.GetCities();
+            cities = CityFunctions.GetCities();
             cb_City.ItemsSource = cities;
             cb_City.DisplayMemberPath = "Name";
-            genders = CityFunction.GetGenders();
+            genders = CityFunctions.GetGenders();
             cb_gender.ItemsSource = genders;
             cb_gender.DisplayMemberPath = "Name";
         }
@@ -82,7 +82,7 @@ namespace EcoCivilization.Pages
             {
                 if (AllWrite(user))
                 {
-                    if (RegistrationFunction.Registration(user))
+                    if (RegistFunction.Registration(user))
                     {
                         MessageBox.Show("Регистрация прошла успешно!");
                         NavigationService.Navigate(new AuthorizationPage());

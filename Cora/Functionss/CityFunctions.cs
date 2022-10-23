@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Cora.DataBase;
 
-namespace Cora
+namespace Cora.Functionss
 {
-    public class CityFunction
+    public class CityFunctions
     {
         public static List<City> GetCities()
         {

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Cora.DataBase;
 
-namespace Cora
+namespace Cora.Functionss
 {
-    public class Authorization
+    public class AuthorizationFunction
     {
         public static List<User> users { get; set; }
 

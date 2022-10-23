@@ -80,7 +80,15 @@
                             IsChecked="False"
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right">
+                        <StackPanel HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                            <Button x:Name="btnSave"
+                                    Content="Сохранить"
+                                    HorizontalAlignment="Right"
+                                    Background="#FF52C3A8"
+                                    Foreground="#FFCFF4D2"
+                                    Margin="0, 0, 20, 0"
+                                    Click="btnSave_Click"/>
                             <Image x:Name="img_icon"
                                    Source="/img/icon2.png"
                                    Width="50"
@@ -119,7 +127,7 @@
                              Grid.Column="0" Grid.ColumnSpan="3"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"
-                             Margin="20, 0, 0, 0"
+                             Margin="40, 0, 0, 0"
                              Height="55"
                              FontSize="20"/>
 
@@ -133,7 +141,7 @@
                              AcceptsReturn="True"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"
-                             Margin="20, 0, 0, 0"
+                             Margin="40, 0, 0, 0"
                              FontSize="20"/>
 
                     <DatePicker Name="dpStartDate"
@@ -143,7 +151,7 @@
                                 Grid.Row="3"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Margin="20, 0, 0, 0"
+                                Margin="40, 0, 0, 0"
                                 Height="55"
                                 FontSize="20"/>
 
@@ -157,7 +165,7 @@
                              AcceptsReturn="True"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"
-                             Margin="20, 0, 0, 0"
+                             Margin="40, 0, 0, 0"
                              FontSize="20"/>
 
                     <ComboBox x:Name="cbCity"
@@ -166,8 +174,8 @@
                               Grid.Row="5"
                               Grid.Column="0" Grid.ColumnSpan="2"
                               HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              Margin="20, 0, 0, 0"
+                              IsEditable="True"
+                              Margin="40, 0, 0, 0"
                               FontSize="20"/>
                 </Grid>
             </DockPanel>

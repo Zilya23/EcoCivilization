@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cora.DataBase;
+using Cora.Functionss;
 
-namespace Cora
+namespace Cora.Functionss
 {
-    public class RegistrationFunction
+    public class RegistFunction
     {
         public static bool Registration(User userR)
         {
             User user = new User();
 
-            if(UniqUser(userR.Login, userR.Telephone))
+            if (UniqUser(userR.Login, userR.Telephone))
             {
                 user.Name = userR.Name;
                 user.Surname = userR.Surname;
@@ -39,7 +40,7 @@ namespace Cora
         {
             List<User> users = bd_connection.connection.User.ToList();
             User uniqUser = users.Where(x => x.Login == login || x.Telephone == telephone).FirstOrDefault();
-            if(uniqUser == null)
+            if (uniqUser == null)
             {
                 return true;
             }

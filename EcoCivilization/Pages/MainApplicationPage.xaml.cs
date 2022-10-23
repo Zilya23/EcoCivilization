@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Cora;
+using Cora.Functionss;
 using Cora.DataBase;
 
 namespace EcoCivilization.Pages
@@ -26,9 +26,9 @@ namespace EcoCivilization.Pages
         public MainApplicationPage()
         {
             InitializeComponent();
-            applicationList = ApplicationFunction.GetAllApplications();
+            applicationList = AplicationFunction.GetAllApplications();
 
-            User user = Authorization.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+            User user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
             this.DataContext = this;
         }
 
