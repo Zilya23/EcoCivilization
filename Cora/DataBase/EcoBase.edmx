@@ -19,6 +19,8 @@
           <Property Name="Photo1" Type="varbinary(max)" />
           <Property Name="Photo2" Type="varbinary(max)" />
           <Property Name="Photo3" Type="varbinary(max)" />
+          <Property Name="Photo4" Type="varbinary(max)" />
+          <Property Name="Photo5" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Application_User">
           <Key>
@@ -200,6 +202,8 @@
           <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Photo2" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Photo3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo5" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Application_User">
           <Key>
@@ -380,6 +384,8 @@
           <EntitySetMapping Name="Application">
             <EntityTypeMapping TypeName="EcoModel.Application">
               <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Photo5" ColumnName="Photo5" />
+                <ScalarProperty Name="Photo4" ColumnName="Photo4" />
                 <ScalarProperty Name="Photo3" ColumnName="Photo3" />
                 <ScalarProperty Name="Photo2" ColumnName="Photo2" />
                 <ScalarProperty Name="Photo1" ColumnName="Photo1" />

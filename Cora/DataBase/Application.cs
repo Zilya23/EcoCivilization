@@ -30,6 +30,8 @@ namespace Cora.DataBase
         public byte[] Photo1 { get; set; }
         public byte[] Photo2 { get; set; }
         public byte[] Photo3 { get; set; }
+        public byte[] Photo4 { get; set; }
+        public byte[] Photo5 { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
