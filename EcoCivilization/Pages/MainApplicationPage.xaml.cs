@@ -29,6 +29,9 @@ namespace EcoCivilization.Pages
             applicationList = AplicationFunction.GetAllApplications();
 
             User user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+
+            cbCity.ItemsSource = CityFunctions.GetCities();
+            cbCity.DisplayMemberPath = "Name";
             this.DataContext = this;
         }
 
@@ -36,7 +39,8 @@ namespace EcoCivilization.Pages
         {
             if(lv_applications.SelectedItem != null)
             {
-                NavigationService.Navigate(new ViewApplicationPage());
+                var selectApplication = lv_applications.SelectedItem as Cora.DataBase.Application;
+                NavigationService.Navigate(new ViewApplicationPage(selectApplication));
             }
         }
 
@@ -53,6 +57,43 @@ namespace EcoCivilization.Pages
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void cbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        public void Filter()
+        {
+            List<Cora.DataBase.Application> filterApplication = applicationList;
+            if (cbCity.SelectedItem != null)
+            {
+                var selectCity = cbCity.SelectedItem as City;
+                filterApplication = filterApplication.Where(x => x.ID_City == selectCity.ID).ToList();
+            }
+
+            if(dpDate.SelectedDate != null)
+            {
+                var selectedDate = dpDate.SelectedDate;
+                filterApplication = filterApplication.Where(x => x.Date == selectedDate).ToList();
+            }
+
+            if(filterApplication.Count == 0)
+            {
+                tbEmpty.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbEmpty.Visibility = Visibility.Hidden;
+            }
+
+            lv_applications.ItemsSource = filterApplication;
+        }
+
+        private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }
