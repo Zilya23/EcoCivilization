@@ -117,7 +117,7 @@
                     <WrapPanel Name="wpFoto"
                                Grid.Row="1" Grid.RowSpan="5"
                                Grid.Column="0" Grid.ColumnSpan="12"
-                               Margin="20, 0"
+                               Margin="20, 10, 20, 0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Stretch">
                         <Image x:Name="imgFirst"
@@ -149,7 +149,7 @@
                     
                     <TextBlock Text="{Binding Name}"
                                Grid.Column="2" Grid.ColumnSpan="3"
-                               Grid.Row="7"
+                               Grid.Row="6"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                FontSize="40"
@@ -160,7 +160,7 @@
                                TextAlignment="Center"/>
                     <TextBlock Text="{Binding Description}"
                                Grid.Column="1" Grid.ColumnSpan="5"
-                               Grid.Row="8"
+                               Grid.Row="7"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                FontSize="30"
@@ -168,6 +168,112 @@
                                Foreground="#FF215273"
                                TextWrapping="Wrap"
                                TextAlignment="Center"/>
+
+                    <TextBlock Text="Город:"
+                               Grid.Column="1"
+                               Grid.Row="8"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               FontSize="30"
+                               Margin="0, 20, 5, 0"
+                               Foreground="#FF215273"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+
+                    <TextBlock Text="{Binding City.Name}"
+                               Grid.Column="2"
+                               Grid.Row="8"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="30"
+                               Margin="0, 20, 0, 0"
+                               Foreground="#FF215273"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+
+                    <TextBlock Text="Дата и время:"
+                               Grid.Column="4"
+                               Grid.Row="8"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               FontSize="30"
+                               Margin="0, 20, 5, 0"
+                               Foreground="#FF215273"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+
+                    <TextBlock Text="{Binding Date}"
+                               Grid.Column="5" Grid.ColumnSpan="2"
+                               Grid.Row="8"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="30"
+                               Margin="0, 20, 0, 0"
+                               Foreground="#FF215273"
+                               TextAlignment="Center"/>
+
+                    <ProgressBar x:Name="pbCountUser"
+                                 Grid.Column="1" Grid.ColumnSpan="4"
+                                 Minimum="0" 
+                                 Maximum="{Binding Count_User}"
+                                 Grid.Row="10"
+                                 Height="35"
+                                 Value="6"
+                                 Background="#FFCFF4D2"/>
+                    <TextBlock Text="{Binding ElementName=pbCountUser, Path=Maximum}"
+                               Name="tbProgressMax"
+                               Grid.Column="1" Grid.ColumnSpan="4"
+                               Grid.Row="10"
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Center"
+                               Margin="0, 0, 10, 0"
+                               FontSize="25"
+                               Foreground="#FF215273"/>
+                    <TextBlock Text="{Binding ElementName=pbCountUser, Path=Minimum}"
+                               Name="tbProgressMin"
+                               Grid.Column="1" Grid.ColumnSpan="4"
+                               Grid.Row="10"
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center"
+                               Margin="10, 0, 0, 0"
+                               FontSize="25"
+                               Foreground="#FF215273"/>
+                    <Button x:Name="btnSignUp"
+                            Content="Участвовать!"
+                            Grid.Column="5" Grid.ColumnSpan="2"
+                            Grid.Row="10"
+                            FontSize="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Height="50"
+                            Background="#FFCFF4D2"
+                            Foreground="#FF52C3A8"
+                            Margin="10, 0, 0, 0"
+                            Click="btnSignUp_Click"/>
+
+                    <Button x:Name="btnAnnul"
+                            Content="Отказаться"
+                            Grid.Column="5" Grid.ColumnSpan="2"
+                            Grid.Row="10"
+                            FontSize="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Height="50"
+                            Background="#FFCFF4D2"
+                            Foreground="#FF52C3A8"
+                            Margin="10, 0, 0, 0"
+                            Visibility="Hidden"
+                            Click="btnAnnul_Click"/>
+
+                    <TextBlock x:Name="tbAchived"
+                               Text="Цель достигнута!"
+                               Grid.Column="1" Grid.ColumnSpan="4"
+                               Grid.Row="10"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="#FF215273"
+                               FontSize="40"
+                               Visibility="Hidden"/>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

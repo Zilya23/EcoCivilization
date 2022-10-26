@@ -24,10 +24,14 @@ namespace EcoCivilization.Pages
     public partial class ViewApplicationPage : Page
     {
         public static Cora.DataBase.Application application { get; set; }
+        public static User user { get; set; }
         public ViewApplicationPage(Cora.DataBase.Application selectApplication)
         {
             InitializeComponent();
             application = selectApplication;
+            user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+            int countSignUp = bd_connection.connection.Application_User.Count(x => x.ID_Application == application.ID);
+            pbCountUser.Value = countSignUp;
             int countPhoto = 5;
 
             if (application.Photo1 == null)
@@ -151,6 +155,22 @@ namespace EcoCivilization.Pages
                 imgFive.Height = 400;
             }
 
+            var userSignUp = bd_connection.connection.Application_User.FirstOrDefault(x=> x.ID_User == user.ID && x.ID_Application == application.ID);
+            if(userSignUp != null)
+            {
+                btnSignUp.Visibility = Visibility.Hidden;
+                btnAnnul.Visibility = Visibility.Visible;
+            }
+
+            
+            if (application.Count_User == countSignUp)
+            {
+                pbCountUser.Visibility = Visibility.Hidden;
+                btnSignUp.Visibility = Visibility.Hidden;
+                tbProgressMax.Visibility = Visibility.Hidden;
+                tbProgressMin.Visibility = Visibility.Hidden;
+                tbAchived.Visibility = Visibility.Visible;
+            }
 
             this.DataContext = application;
         }
@@ -173,6 +193,60 @@ namespace EcoCivilization.Pages
         private void btnMainApplication_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainApplicationPage());
+        }
+
+        private void btnSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            int countSignUp = bd_connection.connection.Application_User.Count(x => x.ID_Application == application.ID);
+            if(application.Count_User >= countSignUp)
+            {
+                Application_User applicationUser = new Application_User();
+                applicationUser.ID_Application = application.ID;
+                applicationUser.ID_User = user.ID;
+                applicationUser.Date = DateTime.Now;
+                bd_connection.connection.Application_User.Add(applicationUser);
+                bd_connection.connection.SaveChanges();
+            }
+            Update();
+        }
+
+        public void Update()
+        {
+            int countSignUp = bd_connection.connection.Application_User.Count(x => x.ID_Application == application.ID);
+            pbCountUser.Value = countSignUp;
+
+            var userSignUp = bd_connection.connection.Application_User.FirstOrDefault(x => x.ID_User == user.ID && x.ID_Application == application.ID);
+            if (userSignUp != null)
+            {
+                btnSignUp.Visibility = Visibility.Hidden;
+                btnAnnul.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnSignUp.Visibility = Visibility.Visible;
+                btnAnnul.Visibility = Visibility.Hidden;
+            }
+
+
+            if (application.Count_User == countSignUp)
+            {
+                pbCountUser.Visibility = Visibility.Hidden;
+                btnSignUp.Visibility = Visibility.Hidden;
+                tbProgressMax.Visibility = Visibility.Hidden;
+                tbProgressMin.Visibility = Visibility.Hidden;
+                tbAchived.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnAnnul_Click(object sender, RoutedEventArgs e)
+        {
+            var userSignUp = bd_connection.connection.Application_User.FirstOrDefault(x => x.ID_User == user.ID && x.ID_Application == application.ID);
+            if (userSignUp != null)
+            {
+                bd_connection.connection.Application_User.Remove(userSignUp);
+                bd_connection.connection.SaveChanges();
+            }
+            Update();
         }
     }
 }

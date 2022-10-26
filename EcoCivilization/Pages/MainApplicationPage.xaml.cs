@@ -95,5 +95,15 @@ namespace EcoCivilization.Pages
         {
             Filter();
         }
+
+        private void btnUserApplication_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUserSignUp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
