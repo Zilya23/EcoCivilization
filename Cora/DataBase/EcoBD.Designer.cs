@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\ЗиляЗавр\source\repos\EcoCivilization\Cora\DataBase\EcoBase.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\201922\Source\Repos\Zilya23\EcoCivilization\Cora\DataBase\EcoBD.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

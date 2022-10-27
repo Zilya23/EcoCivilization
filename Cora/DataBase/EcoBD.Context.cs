@@ -13,10 +13,10 @@ namespace Cora.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcoEntities : DbContext
+    public partial class EcoFirstBDEntitiess : DbContext
     {
-        public EcoEntities()
-            : base("name=EcoEntities")
+        public EcoFirstBDEntitiess()
+            : base("name=EcoFirstBDEntitiess")
         {
         }
     
@@ -29,6 +29,7 @@ namespace Cora.DataBase
         public virtual DbSet<Application_User> Application_User { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<PhotoApplication> PhotoApplication { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }

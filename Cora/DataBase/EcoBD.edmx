@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище EcoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище EcoFirstBDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,11 +16,7 @@
           <Property Name="Place" Type="varchar(max)" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="ID_City" Type="int" />
-          <Property Name="Photo1" Type="varbinary(max)" />
-          <Property Name="Photo2" Type="varbinary(max)" />
-          <Property Name="Photo3" Type="varbinary(max)" />
-          <Property Name="Photo4" Type="varbinary(max)" />
-          <Property Name="Photo5" Type="varbinary(max)" />
+          <Property Name="IDUser" Type="int" />
         </EntityType>
         <EntityType Name="Application_User">
           <Key>
@@ -44,6 +40,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="PhotoApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="IDApplicatioon" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -89,6 +93,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Application_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Application_User_Application">
           <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
           <End Role="Application_User" Type="Self.Application_User" Multiplicity="*" />
@@ -110,6 +126,18 @@
             </Principal>
             <Dependent Role="Application_User">
               <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoApplication_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="PhotoApplication" Type="Self.PhotoApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhotoApplication">
+              <PropertyRef Name="IDApplicatioon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,16 +177,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище EcoModelContainer">
+        <EntityContainer Name="Хранилище EcoFirstBDModelContainer">
           <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Application_User" EntityType="Self.Application_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoApplication" EntityType="Self.PhotoApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Application_City" Association="Self.FK_Application_City">
             <End Role="City" EntitySet="City" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_User" Association="Self.FK_Application_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_User_Application" Association="Self.FK_Application_User_Application">
@@ -168,6 +201,10 @@
           <AssociationSet Name="FK_Application_User_User" Association="Self.FK_Application_User_User">
             <End Role="User" EntitySet="User" />
             <End Role="Application_User" EntitySet="Application_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoApplication_Application" Association="Self.FK_PhotoApplication_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="PhotoApplication" EntitySet="PhotoApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
             <End Role="City" EntitySet="City" />
@@ -182,10 +219,11 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EcoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EcoFirstBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="ID" />
@@ -197,13 +235,11 @@
           <Property Name="Place" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ID_City" Type="Int32" />
+          <Property Name="IDUser" Type="Int32" />
           <NavigationProperty Name="City" Relationship="Self.FK_Application_City" FromRole="Application" ToRole="City" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Application_User" FromRole="Application" ToRole="User" />
           <NavigationProperty Name="Application_User" Relationship="Self.FK_Application_User_Application" FromRole="Application" ToRole="Application_User" />
-          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo2" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo3" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo4" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo5" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PhotoApplication" Relationship="Self.FK_PhotoApplication_Application" FromRole="Application" ToRole="PhotoApplication" />
         </EntityType>
         <EntityType Name="Application_User">
           <Key>
@@ -232,6 +268,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PhotoApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IDApplicatioon" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_PhotoApplication_Application" FromRole="PhotoApplication" ToRole="Application" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -265,6 +310,7 @@
           <Property Name="Count_Application" Type="Int32" />
           <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_User" FromRole="User" ToRole="Application" />
           <NavigationProperty Name="Application_User" Relationship="Self.FK_Application_User_User" FromRole="User" ToRole="Application_User" />
           <NavigationProperty Name="City" Relationship="Self.FK_User_City" FromRole="User" ToRole="City" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
@@ -282,6 +328,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Application_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Application_User_Application">
           <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
           <End Role="Application_User" Type="Self.Application_User" Multiplicity="*" />
@@ -291,6 +349,18 @@
             </Principal>
             <Dependent Role="Application_User">
               <PropertyRef Name="ID_Application" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoApplication_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="PhotoApplication" Type="Self.PhotoApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhotoApplication">
+              <PropertyRef Name="IDApplicatioon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,11 +412,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EcoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EcoFirstBDEntitiess" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Application" EntityType="Self.Application" />
           <EntitySet Name="Application_User" EntityType="Self.Application_User" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="PhotoApplication" EntityType="Self.PhotoApplication" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -354,9 +425,17 @@
             <End Role="City" EntitySet="City" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
+          <AssociationSet Name="FK_Application_User" Association="Self.FK_Application_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
           <AssociationSet Name="FK_Application_User_Application" Association="Self.FK_Application_User_Application">
             <End Role="Application" EntitySet="Application" />
             <End Role="Application_User" EntitySet="Application_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoApplication_Application" Association="Self.FK_PhotoApplication_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="PhotoApplication" EntitySet="PhotoApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_User_User" Association="Self.FK_Application_User_User">
             <End Role="User" EntitySet="User" />
@@ -380,15 +459,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище EcoModelContainer" CdmEntityContainer="EcoEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище EcoFirstBDModelContainer" CdmEntityContainer="EcoFirstBDEntitiess">
           <EntitySetMapping Name="Application">
-            <EntityTypeMapping TypeName="EcoModel.Application">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.Application">
               <MappingFragment StoreEntitySet="Application">
-                <ScalarProperty Name="Photo5" ColumnName="Photo5" />
-                <ScalarProperty Name="Photo4" ColumnName="Photo4" />
-                <ScalarProperty Name="Photo3" ColumnName="Photo3" />
-                <ScalarProperty Name="Photo2" ColumnName="Photo2" />
-                <ScalarProperty Name="Photo1" ColumnName="Photo1" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -396,11 +470,12 @@
                 <ScalarProperty Name="Place" ColumnName="Place" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Application_User">
-            <EntityTypeMapping TypeName="EcoModel.Application_User">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.Application_User">
               <MappingFragment StoreEntitySet="Application_User">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
@@ -410,7 +485,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="EcoModel.City">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.City">
               <MappingFragment StoreEntitySet="City">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -418,15 +493,24 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="EcoModel.Gender">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PhotoApplication">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.PhotoApplication">
+              <MappingFragment StoreEntitySet="PhotoApplication">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IDApplicatioon" ColumnName="IDApplicatioon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="EcoModel.Role">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -434,7 +518,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="EcoModel.sysdiagrams">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -445,7 +529,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="EcoModel.User">
+            <EntityTypeMapping TypeName="EcoFirstBDModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

@@ -167,53 +167,43 @@
                                 Foreground="#FF0B300E"
                                 SelectedDateChanged="dpDate_SelectedDateChanged"/>
 
-
                     <ListView x:Name="lv_applications" 
                               ItemsSource="{Binding applicationList}" 
                               Grid.Row="2" Grid.RowSpan="12"
                               Grid.Column="0" Grid.ColumnSpan="12"
-                              SelectionChanged="lv_applications_SelectionChanged">
+                              HorizontalContentAlignment="Stretch"
+                              SelectionChanged="lv_applications_SelectionChanged"
+                              >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Columns="1"/>
                                 </ItemsPanelTemplate>
                             </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
+                        <ListView.ItemTemplate >
+                            <DataTemplate >
                                 <Border BorderBrush="#FF215273" 
                                         BorderThickness="3"
                                         CornerRadius="50"
+                                        HorizontalAlignment="Stretch"
                                         Margin="60, 0, 0, 0">
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                            <!--<WrapPanel Name="wpFoto">
-                                                <Image x:Name="imgFirst"
-                                                   Source="{Binding Photo1}" 
-                                                   Width="100"
-                                                   Height="100"/>
-                                                <Image x:Name="imgSecond"
-                                                   Source="{Binding Photo2}"
-                                                   Width="100"
-                                                   Height="100"/>
-                                                <Image x:Name="imgThirst"
-                                                   Source="{Binding Photo3}"
-                                                   Width="100"
-                                                   Height="100"/>
-                                                <Image x:Name="imgFourth"
-                                                   Source="{Binding Photo4}"
-                                                   Width="100"
-                                                   Height="100"/>
-                                                <Image x:Name="imgFive"
-                                                   Source="{Binding Photo5}"
-                                                   Width="100"
-                                                   Height="100"/>   
-                                        </WrapPanel>-->
-                                        <StackPanel Orientation="Horizontal"
-                                                    HorizontalAlignment="Stretch">
-                                            <Image Source="{Binding Photo1}" Width="550" Height="300" Margin="40, 20, 20, 0"/>
-                                            <Image Source="{Binding Photo2}" Width="550" Height="300" Margin="0, 20, 20, 0"/>
-                                            <Image Source="{Binding Photo3}" Width="550" Height="300" Margin="0, 20, 20, 0"/>
-                                        </StackPanel>
-                                    
+                                        
+                                        <ListView x:Name="lvPictures"  SelectionChanged="lvPictures_SelectionChanged" ItemsSource="{Binding PhotoApplication}" HorizontalAlignment="Stretch">
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="{Binding Photo}"
+                                                               Width="{Binding Application.PhotoWidth}"
+                                                               Height="{Binding Application.PhotoHeight}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                         <TextBlock Text="{Binding Name}" 
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"

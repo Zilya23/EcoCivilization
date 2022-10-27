@@ -18,6 +18,7 @@ namespace Cora.DataBase
         public Application()
         {
             this.Application_User = new HashSet<Application_User>();
+            this.PhotoApplication = new HashSet<PhotoApplication>();
         }
     
         public int ID { get; set; }
@@ -27,14 +28,13 @@ namespace Cora.DataBase
         public string Place { get; set; }
         public string Description { get; set; }
         public Nullable<int> ID_City { get; set; }
-        public byte[] Photo1 { get; set; }
-        public byte[] Photo2 { get; set; }
-        public byte[] Photo3 { get; set; }
-        public byte[] Photo4 { get; set; }
-        public byte[] Photo5 { get; set; }
+        public Nullable<int> IDUser { get; set; }
     
         public virtual City City { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application_User> Application_User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhotoApplication> PhotoApplication { get; set; }
     }
 }

@@ -105,5 +105,12 @@ namespace EcoCivilization.Pages
         {
 
         }
+
+        private void lvPictures_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var application = (sender as ListView).DataContext as Cora.DataBase.Application;
+            if (application != null)
+                NavigationService.Navigate(new ViewApplicationPage(application));
+        }
     }
 }

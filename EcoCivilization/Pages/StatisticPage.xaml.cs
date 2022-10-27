@@ -29,40 +29,40 @@ namespace EcoCivilization.Pages
             application = bd_connection.connection.Application.FirstOrDefault(x=> x.ID == 1);
             int countPhoto = 5;
 
-            if (application.Photo1 == null)
-            {
-                var child = this.wpFoto.Children[0];
-                child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                countPhoto--;
-            }
+            //if (application.Photo1 == null)
+            //{
+            //    var child = this.wpFoto.Children[0];
+            //    child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //    countPhoto--;
+            //}
 
-            if(application.Photo2 == null)
-            {
-                var child = this.wpFoto.Children[1];
-                child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                countPhoto--;
-            }
+            //if(application.Photo2 == null)
+            //{
+            //    var child = this.wpFoto.Children[1];
+            //    child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //    countPhoto--;
+            //}
 
-            if (application.Photo3 == null)
-            {
-                var child = this.wpFoto.Children[2];
-                child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                countPhoto--;
-            }
+            //if (application.Photo3 == null)
+            //{
+            //    var child = this.wpFoto.Children[2];
+            //    child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //    countPhoto--;
+            //}
 
-            if (application.Photo4 == null)
-            {
-                var child = this.wpFoto.Children[3];
-                child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                countPhoto--;
-            }
+            //if (application.Photo4 == null)
+            //{
+            //    var child = this.wpFoto.Children[3];
+            //    child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //    countPhoto--;
+            //}
             
-            if (application.Photo5 == null)
-            {
-                var child = this.wpFoto.Children[4];
-                child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-                countPhoto--;
-            }
+            //if (application.Photo5 == null)
+            //{
+            //    var child = this.wpFoto.Children[4];
+            //    child.Visibility = child.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            //    countPhoto--;
+            //}
 
             if(countPhoto == 3)
             {
