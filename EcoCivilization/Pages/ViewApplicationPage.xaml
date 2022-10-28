@@ -190,7 +190,7 @@
                                TextWrapping="Wrap"
                                TextAlignment="Center"/>
 
-                    <TextBlock Text="{Binding Date}"
+                    <TextBlock Text="{Binding Date, StringFormat=dd.MM.yyyy HH:mm, ConverterCulture=ru}"
                                Grid.Column="5" Grid.ColumnSpan="2"
                                Grid.Row="8"
                                HorizontalAlignment="Left"
@@ -208,24 +208,19 @@
                                  Height="35"
                                  Value="6"
                                  Background="#FFCFF4D2"/>
-                    <TextBlock Text="{Binding ElementName=pbCountUser, Path=Maximum}"
-                               Name="tbProgressMax"
-                               Grid.Column="1" Grid.ColumnSpan="4"
-                               Grid.Row="10"
-                               HorizontalAlignment="Right" 
-                               VerticalAlignment="Center"
-                               Margin="0, 0, 10, 0"
-                               FontSize="25"
-                               Foreground="#FF215273"/>
-                    <TextBlock Text="{Binding ElementName=pbCountUser, Path=Minimum}"
+                    <TextBlock 
                                Name="tbProgressMin"
                                Grid.Column="1" Grid.ColumnSpan="4"
                                Grid.Row="10"
-                               HorizontalAlignment="Left" 
+                               HorizontalAlignment="Center" 
                                VerticalAlignment="Center"
                                Margin="10, 0, 0, 0"
                                FontSize="25"
-                               Foreground="#FF215273"/>
+                               Foreground="#FF215273">
+                        <Run Text="{Binding ElementName=pbCountUser, Path=Value}"/>
+                        <Run Text="/"/>
+                        <Run Text="{Binding ElementName=pbCountUser, Path=Maximum}"/>
+                    </TextBlock>
                     <Button x:Name="btnSignUp"
                             Content="Участвовать!"
                             Grid.Column="5" Grid.ColumnSpan="2"

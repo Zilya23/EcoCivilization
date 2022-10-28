@@ -168,7 +168,6 @@ namespace EcoCivilization.Pages
             {
                 pbCountUser.Visibility = Visibility.Hidden;
                 btnSignUp.Visibility = Visibility.Hidden;
-                tbProgressMax.Visibility = Visibility.Hidden;
                 tbProgressMin.Visibility = Visibility.Hidden;
                 tbAchived.Visibility = Visibility.Visible;
             }
@@ -233,7 +232,6 @@ namespace EcoCivilization.Pages
             {
                 pbCountUser.Visibility = Visibility.Hidden;
                 btnSignUp.Visibility = Visibility.Hidden;
-                tbProgressMax.Visibility = Visibility.Hidden;
                 tbProgressMin.Visibility = Visibility.Hidden;
                 tbAchived.Visibility = Visibility.Visible;
             }
