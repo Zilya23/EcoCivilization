@@ -11,5 +11,8 @@ namespace Cora.DataBase
     {
         public int PhotoWidth => 1400 / PhotoApplication.Count();
         public int PhotoHeight => 900 / PhotoApplication.Count();
+
+        public int PhotoWidthAddPage => (int)(500 / Math.Sqrt(PhotoApplication.Count()));
+        public int PhotoHeihtAddPage => (int)(300 / Math.Sqrt(PhotoApplication.Count()));
     }
 }

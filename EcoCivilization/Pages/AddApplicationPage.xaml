@@ -225,7 +225,50 @@
                             FontSize="20"
                             Background="#FFCFF4D2"
                             Foreground="#FF52C3A8"
-                            Click="btnPlus_Click" Cursor="Hand"/>
+                            Click="btnPlus_Click"/>
+
+                    <ListView x:Name="lvPhoto"
+                              Grid.Row="2" Grid.RowSpan="5"
+                              Grid.Column="3" Grid.ColumnSpan="4"
+                              Margin="20"
+                              ItemsSource="{Binding applicationPhotos}"
+                              SelectionChanged="lvPhoto_SelectionChanged">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Photo}"
+                                        Width="{Binding Application.PhotoWidthAddPage}"
+                                        Height="{Binding Application.PhotoHeihtAddPage}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button x:Name="btnAddPhoto"
+                            Content="Добавить фото"
+                            Grid.Row="7"
+                            Grid.Column="4"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Background="#FFCFF4D2"
+                            Foreground="#FF52C3A8"
+                            Click="btnAddPhoto_Click"/>
+                    <Button x:Name="btnDelPhoto"
+                            Content="Удалить фото"
+                            Grid.Row="7"
+                            Grid.Column="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            Background="#FFCFF4D2"
+                            Foreground="#FF52C3A8"
+                            Click="btnDelPhoto_Click"/>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
