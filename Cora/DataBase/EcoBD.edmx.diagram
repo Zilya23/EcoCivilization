@@ -5,22 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2c42d1aa3fb74215a4d0721ccd809097" Name="Diagram1">
-        <EntityTypeShape EntityType="EcoFirstBDModel.Application" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.Application_User" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.City" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.Gender" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.PhotoApplication" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.Role" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcoFirstBDModel.User" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_Application_City" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User_Application" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_PhotoApplication_Application" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User_User" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_User_City" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_User_Gender" ManuallyRouted="false" />
-        <AssociationConnector Association="EcoFirstBDModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.Application" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.Application_User" Width="1.5" PointX="7.5" PointY="4.875" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.City" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.Gender" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.PhotoApplication" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.Role" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EcoFirstBDModel.User" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_Application_City" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User_Application" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_PhotoApplication_Application" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_Application_User_User" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_User_City" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_User_Gender" />
+        <AssociationConnector Association="EcoFirstBDModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

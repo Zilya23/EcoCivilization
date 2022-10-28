@@ -29,6 +29,7 @@ namespace Cora.DataBase
         public string Description { get; set; }
         public Nullable<int> ID_City { get; set; }
         public Nullable<int> IDUser { get; set; }
+        public Nullable<System.TimeSpan> TimeStart { get; set; }
     
         public virtual City City { get; set; }
         public virtual User User { get; set; }

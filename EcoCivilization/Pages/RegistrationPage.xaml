@@ -143,7 +143,6 @@
                   HorizontalAlignment="Center"
                   FontSize="30"
                   IsEditable="True"
-                  Foreground="#FFCFF4D2"
                   Width="400" 
                   BorderBrush="#FFCFF4D2"/>
 
