@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EcoCivilization"
         mc:Ignorable="d"
         Title="ЭкоЦивилизация" WindowState="Maximized"
-        MinHeight="800" MinWidth="1500">
+        MinHeight="800" MinWidth="1300">
     <Grid>
         <Frame x:Name="auto_reg" NavigationUIVisibility="Hidden"/>
     </Grid>

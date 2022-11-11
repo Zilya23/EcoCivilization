@@ -48,6 +48,12 @@ namespace EcoCivilization.Pages
                 tbAchived.Visibility = Visibility.Visible;
             }
 
+            if(user.ID == application.IDUser)
+            {
+                btnSignUp.Visibility = Visibility.Hidden;
+                btnRedaction.Visibility = Visibility.Visible;
+            }
+
             this.DataContext = application;
         }
 
@@ -122,6 +128,11 @@ namespace EcoCivilization.Pages
                 bd_connection.connection.SaveChanges();
             }
             Update();
+        }
+
+        private void btnRedactionClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RedactionApplicationPage(application));
         }
     }
 }

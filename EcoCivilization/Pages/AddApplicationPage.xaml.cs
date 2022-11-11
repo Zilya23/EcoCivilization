@@ -63,7 +63,7 @@ namespace EcoCivilization.Pages
                 application.Date = dpStartDate.SelectedDate;
                 application.Name = tbName.Text.Trim();
                 application.Description = tbDescription.Text.Trim();
-                application.Count_User = int.Parse(tbYears.Text);
+                application.Count_User = int.Parse(tbCountUser.Text);
                 application.Place = tbPlace.Text.Trim();
                 application.ID_City = (cbCity.SelectedItem as City).ID;
                 application.IDUser = user.ID;
@@ -85,19 +85,19 @@ namespace EcoCivilization.Pages
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
-            int countUser = Convert.ToInt32(tbYears.Text);
+            int countUser = Convert.ToInt32(tbCountUser.Text);
             if (countUser != 2)
             {
-                tbYears.Text = (countUser - 1).ToString();
+                tbCountUser.Text = (countUser - 1).ToString();
             }
         }
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
-            int countUser = Convert.ToInt32(tbYears.Text);
+            int countUser = Convert.ToInt32(tbCountUser.Text);
             if (countUser != 200)
             {
-                tbYears.Text = (countUser + 1).ToString();
+                tbCountUser.Text = (countUser + 1).ToString();
             }
         }
 
