@@ -175,7 +175,9 @@
                                Foreground="#FF215273"
                                TextWrapping="Wrap"
                                TextAlignment="Center"/>
-                    <TextBlock Text="{Binding Description}"
+                    <ScrollViewer Grid.Column="1" Grid.ColumnSpan="5"
+                                  Grid.Row="7">
+                        <TextBlock Text="{Binding Description}"
                                Grid.Column="1" Grid.ColumnSpan="5"
                                Grid.Row="7"
                                HorizontalAlignment="Center"
@@ -185,6 +187,8 @@
                                Foreground="#FF215273"
                                TextWrapping="Wrap"
                                TextAlignment="Center"/>
+                    </ScrollViewer>
+                    
 
                     <TextBlock Text="{Binding Place, StringFormat={}Место проведения: {0}}"
                                Grid.Column="1" Grid.ColumnSpan="5"
