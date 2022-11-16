@@ -144,9 +144,19 @@ namespace EcoCivilization.Pages
             }
         }
 
-        private void lvPhoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnAddApplication_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new AddApplicationPage());
+        }
 
+        private void btnUserApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserApplicationPage());
+        }
+
+        private void btnUserSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserSignUpApplicationPage());
         }
     }
 }

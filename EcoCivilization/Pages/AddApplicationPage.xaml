@@ -35,7 +35,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnMainApplication_Click" Cursor="Hand"/>
+                                Click="btnMainApplication_Click"/>
                         <Button x:Name="btnAddApplication"
                                 Content="Подать заявку"
                                 HorizontalAlignment="Center"
@@ -44,8 +44,29 @@
                                 FontSize="30"
                                 Height="50"
                                 Width="300"
-                                Margin="10"/>
-                        <Button x:Name="btnStatistic"
+                                Margin="10"
+                                Click="btnAddApplication_Click"/>
+                        <Button x:Name="btnUserApplication"
+                                Content="Ваши заявки"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserApplication_Click"/>
+                        <Button x:Name="btnUserSignUp"
+                                Content="Ваши участия"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserSignUp_Click"/>
+                        <!--<Button x:Name="btnStatistic"
                                 Content="Статистика"
                                 HorizontalAlignment="Center"
                                 Background="#FF52C3A8"
@@ -54,7 +75,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnStatistic_Click"/>
+                                Click="btnStatistic_Click"/>-->
                         <Button x:Name="btnExit"
                                 Content="Выйти"
                                 HorizontalAlignment="Center"
@@ -231,8 +252,7 @@
                               Grid.Row="2" Grid.RowSpan="5"
                               Grid.Column="3" Grid.ColumnSpan="4"
                               Margin="20"
-                              ItemsSource="{Binding applicationPhotos}"
-                              SelectionChanged="lvPhoto_SelectionChanged">
+                              ItemsSource="{Binding applicationPhotos}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>

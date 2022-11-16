@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\iconka.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.4.3.0\lib\net462\ControlzEx.dll</HintPath>
@@ -131,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserSignUpApplicationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ViewApplicationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +167,9 @@
     </Compile>
     <Compile Include="Pages\UserApplicationPage.xaml.cs">
       <DependentUpon>UserApplicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserSignUpApplicationPage.xaml.cs">
+      <DependentUpon>UserSignUpApplicationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewApplicationPage.xaml.cs">
       <DependentUpon>ViewApplicationPage.xaml</DependentUpon>

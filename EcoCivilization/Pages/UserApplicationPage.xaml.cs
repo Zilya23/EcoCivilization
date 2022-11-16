@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Cora.Functionss;
 using Cora.DataBase;
+
 namespace EcoCivilization.Pages
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace EcoCivilization.Pages
 
         private void btnUserSignUp_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new UserSignUpApplicationPage());
         }
 
         private void btnStatistic_Click(object sender, RoutedEventArgs e)
@@ -108,6 +109,11 @@ namespace EcoCivilization.Pages
             }
 
             lv_applications.ItemsSource = filterApplication;
+        }
+
+        private void btnUserApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserApplicationPage());
         }
     }
 }

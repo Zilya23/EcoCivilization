@@ -35,7 +35,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnMainApplication_Click"/>
+                                Click="btnMainApplication_Click" Cursor="Hand"/>
                         <Button x:Name="btnAddApplication"
                                 Content="Подать заявку"
                                 HorizontalAlignment="Center"
@@ -46,7 +46,27 @@
                                 Width="300"
                                 Margin="10"
                                 Click="btnAddApplication_Click"/>
-                        <Button x:Name="btnStatistic"
+                        <Button x:Name="btnUserApplication"
+                                Content="Ваши заявки"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserApplication_Click"/>
+                        <Button x:Name="btnUserSignUp"
+                                Content="Ваши участия"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserSignUp_Click"/>
+                        <!--<Button x:Name="btnStatistic"
                                 Content="Статистика"
                                 HorizontalAlignment="Center"
                                 Background="#FF52C3A8"
@@ -55,7 +75,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnStatistic_Click"/>
+                                Click="btnStatistic_Click"/>-->
                         <Button x:Name="btnExit"
                                 Content="Выйти"
                                 HorizontalAlignment="Center"

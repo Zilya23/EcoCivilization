@@ -65,7 +65,7 @@
                                 Width="300"
                                 Margin="10"
                                 Click="btnUserSignUp_Click"/>
-                        <Button x:Name="btnStatistic"
+                        <!--<Button x:Name="btnStatistic"
                                 Content="Статистика"
                                 HorizontalAlignment="Center"
                                 Background="#FF52C3A8"
@@ -74,7 +74,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnStatistic_Click"/>
+                                Click="btnStatistic_Click"/>-->
                         <Button x:Name="btnExit"
                                 Content="Выйти"
                                 HorizontalAlignment="Center"
