@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ParticipantWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RedactionApplicationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +145,9 @@
     </Compile>
     <Compile Include="Pages\MainApplicationPage.xaml.cs">
       <DependentUpon>MainApplicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ParticipantWindow.xaml.cs">
+      <DependentUpon>ParticipantWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RedactionApplicationPage.xaml.cs">
       <DependentUpon>RedactionApplicationPage.xaml</DependentUpon>

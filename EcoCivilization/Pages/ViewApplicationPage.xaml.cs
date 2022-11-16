@@ -52,6 +52,7 @@ namespace EcoCivilization.Pages
             {
                 btnSignUp.Visibility = Visibility.Hidden;
                 btnRedaction.Visibility = Visibility.Visible;
+                btnPartisipant.Visibility = Visibility.Visible;
             }
 
             if(DateTime.Now >= application.Date)
@@ -139,6 +140,12 @@ namespace EcoCivilization.Pages
         private void btnRedactionClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RedactionApplicationPage(application));
+        }
+
+        private void btnpartisipantClick(object sender, RoutedEventArgs e)
+        {
+            ParticipantWindow participantWindow = new ParticipantWindow(application);
+            participantWindow.ShowDialog();
         }
     }
 }
