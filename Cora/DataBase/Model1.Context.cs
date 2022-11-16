@@ -13,10 +13,10 @@ namespace Cora.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcoEntities : DbContext
+    public partial class EcoEntities1 : DbContext
     {
-        public EcoEntities()
-            : base("name=EcoEntities")
+        public EcoEntities1()
+            : base("name=EcoEntities1")
         {
         }
     

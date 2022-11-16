@@ -54,6 +54,12 @@ namespace EcoCivilization.Pages
                 btnRedaction.Visibility = Visibility.Visible;
             }
 
+            if(DateTime.Now >= application.Date)
+            {
+                btnSignUp.Visibility = Visibility.Hidden;
+                btnAnnul.Visibility= Visibility.Hidden;
+            }
+
             this.DataContext = application;
         }
 
@@ -87,7 +93,7 @@ namespace EcoCivilization.Pages
                 applicationUser.ID_User = user.ID;
                 applicationUser.Date = DateTime.Now;
                 bd_connection.connection.Application_User.Add(applicationUser);
-                bd_connection.connection.SaveChanges();
+                bd_connection.connection.SaveChanges(); 
             }
             Update();
         }

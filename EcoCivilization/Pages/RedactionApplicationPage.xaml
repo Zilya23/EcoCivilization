@@ -26,7 +26,7 @@
                                Foreground="#FF215273"
                                Margin="10"/>
                         <Button x:Name="btnMainApplication"
-                                Content="Глвная страница"
+                                Content="Главная страница"
                                 HorizontalAlignment="Center"
                                 Background="#FF52C3A8"
                                 Foreground="#FFCFF4D2"
@@ -34,7 +34,7 @@
                                 Height="50"
                                 Width="300"
                                 Margin="10"
-                                Click="btnMainApplication_Click"/>
+                                Click="btnMainApplication_Click" Cursor="Hand"/>
                         <Button x:Name="btnAddApplication"
                                 Content="Подать заявку"
                                 HorizontalAlignment="Center"

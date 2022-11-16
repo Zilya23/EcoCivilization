@@ -39,7 +39,6 @@ namespace EcoCivilization.Pages
                 Properties.Settings.Default.Login = user.Login;
                 Properties.Settings.Default.Password = user.Password;
                 Properties.Settings.Default.Save();
-                MessageBox.Show("Hehe");
                 NavigationService.Navigate(new MainApplicationPage());
             }
             else

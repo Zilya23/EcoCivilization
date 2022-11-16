@@ -33,6 +33,8 @@ namespace EcoCivilization.Pages
             cbCity.ItemsSource = CityFunctions.GetCities();
             cbCity.DisplayMemberPath = "Name";
             this.DataContext = this;
+
+            cbCity.SelectedItem = user.City;
         }
 
         private void lv_applications_SelectionChanged(object sender, SelectionChangedEventArgs e)

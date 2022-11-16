@@ -393,7 +393,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EcoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EcoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Application" EntityType="Self.Application" />
           <EntitySet Name="Application_User" EntityType="Self.Application_User" />
           <EntitySet Name="City" EntityType="Self.City" />
@@ -439,7 +439,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище EcoModelContainer" CdmEntityContainer="EcoEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище EcoModelContainer" CdmEntityContainer="EcoEntities1">
           <EntitySetMapping Name="Application">
             <EntityTypeMapping TypeName="EcoModel.Application">
               <MappingFragment StoreEntitySet="Application">

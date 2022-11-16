@@ -56,31 +56,37 @@ namespace EcoCivilization.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (applicationPhotos.Count >= 1)
             {
-                TimeSpan time = TimeSpan.Parse(tpTimeStart.Text);
-                application.TimeStart = time;
-                application.Date = dpStartDate.SelectedDate;
-                application.Name = tbName.Text.Trim();
-                application.Description = tbDescription.Text.Trim();
-                application.Count_User = int.Parse(tbCountUser.Text);
-                application.Place = tbPlace.Text.Trim();
-                application.ID_City = (cbCity.SelectedItem as City).ID;
-                application.IDUser = user.ID;
-                bd_connection.connection.Application.Add(application);
-                foreach(var i in applicationPhotos)
+                try
                 {
-                    bd_connection.connection.PhotoApplication.Add(i);
+                    TimeSpan time = TimeSpan.Parse(tpTimeStart.Text);
+                    application.TimeStart = time;
+                    application.Date = dpStartDate.SelectedDate;
+                    application.Name = tbName.Text.Trim();
+                    application.Description = tbDescription.Text.Trim();
+                    application.Count_User = int.Parse(tbCountUser.Text);
+                    application.Place = tbPlace.Text.Trim();
+                    application.ID_City = (cbCity.SelectedItem as City).ID;
+                    application.IDUser = user.ID;
+                    bd_connection.connection.Application.Add(application);
+                    foreach (var i in applicationPhotos)
+                    {
+                        bd_connection.connection.PhotoApplication.Add(i);
+                    }
+                    bd_connection.connection.SaveChanges();
+                    MessageBox.Show("Успешно создано");
+                    NavigationService.Navigate(new MainApplicationPage());
                 }
-                bd_connection.connection.SaveChanges();
-                MessageBox.Show("Успешно создано");
-                NavigationService.Navigate(new MainApplicationPage());
+                catch
+                {
+                    MessageBox.Show("Заполните все обязательные поля");
+                }
             }
-            catch
+            else
             {
-                MessageBox.Show("Заполните все обязательные поля");
+                MessageBox.Show("Добавьте фото");
             }
-            
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
@@ -131,6 +137,10 @@ namespace EcoCivilization.Pages
                     lvPhoto.ItemsSource = applicationPhotos;
                     lvPhoto.Items.Refresh();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Нельзя добавить более 5 фотографий");
             }
         }
 

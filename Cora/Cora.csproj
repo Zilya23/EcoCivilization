@@ -53,40 +53,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\Application.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Application_User.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\City.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\ECOBD.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECOBD.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\ECOBD.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECOBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\ECOBD.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECOBD.edmx</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Gender.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataBase\PhotoApplication.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Role.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\User.cs">
-      <DependentUpon>ECOBD.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Functionss\AplicationFunction.cs" />
     <Compile Include="Functionss\AuthorizationFunction.cs" />
@@ -99,12 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DataBase\ECOBD.edmx">
+    <EntityDeploy Include="DataBase\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ECOBD.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataBase\ECOBD.edmx.diagram">
-      <DependentUpon>ECOBD.edmx</DependentUpon>
+    <None Include="DataBase\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -112,15 +112,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBase\ECOBD.Context.tt">
+    <Content Include="DataBase\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECOBD.edmx</DependentUpon>
-      <LastGenOutput>ECOBD.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataBase\ECOBD.tt">
+    <Content Include="DataBase\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECOBD.edmx</DependentUpon>
-      <LastGenOutput>ECOBD.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
