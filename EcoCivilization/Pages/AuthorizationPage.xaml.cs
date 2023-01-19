@@ -32,7 +32,7 @@ namespace EcoCivilization.Pages
         private void btn_authoriz_Click(object sender, RoutedEventArgs e)
         {
             string login = tb_Login.Text.Trim();
-            string password = tb_Pass.Text.Trim();
+            string password = tb_Pass.Password.Trim();
             user = AuthorizationFunction.AuthorizationUser(login, password);
             if(user != null)
             {
@@ -43,7 +43,7 @@ namespace EcoCivilization.Pages
             }
             else
             {
-                MessageBox.Show("Ne Hehe");
+                MessageBox.Show("Неверный логин или пароль");
             }
         }
 

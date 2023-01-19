@@ -8,6 +8,6 @@ namespace Cora.DataBase
 {
     public class bd_connection
     {
-        public static EcoEntities1 connection = new EcoEntities1();
+        public static EcoCivilizationEntities connection = new EcoCivilizationEntities();
     }
 }

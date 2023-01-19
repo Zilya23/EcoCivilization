@@ -144,6 +144,7 @@
                   FontSize="30"
                   IsEditable="True"
                   Width="400" 
+                  Foreground="#FFCFF4D2"
                   BorderBrush="#FFCFF4D2"/>
 
         <TextBlock Text="Пол"

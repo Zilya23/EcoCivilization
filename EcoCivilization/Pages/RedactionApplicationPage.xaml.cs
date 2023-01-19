@@ -41,13 +41,13 @@ namespace EcoCivilization.Pages
         private void btnMainApplication_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainApplicationPage());
-            bd_connection.connection = new EcoEntities1();
+            bd_connection.connection = new EcoCivilizationEntities();
         }
 
         private void btnAddApplication_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddApplicationPage());
-            bd_connection.connection = new EcoEntities1();
+            bd_connection.connection = new EcoCivilizationEntities();
         }
 
         //private void btnStatistic_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace EcoCivilization.Pages
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AuthorizationFunction());
-            bd_connection.connection = new EcoEntities1();
+            bd_connection.connection = new EcoCivilizationEntities();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
