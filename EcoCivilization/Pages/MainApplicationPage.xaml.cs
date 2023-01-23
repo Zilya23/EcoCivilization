@@ -51,10 +51,10 @@ namespace EcoCivilization.Pages
             NavigationService.Navigate(new AddApplicationPage());
         }
 
-        //private void btnStatistic_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NavigationService.Navigate(new StatisticPage());
-        //}
+        private void btnStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StatisticPage());
+        }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {

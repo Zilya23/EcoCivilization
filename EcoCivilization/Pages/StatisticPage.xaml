@@ -5,31 +5,136 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EcoCivilization.Pages"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StatisticPage">
+      Title="StatisticPage" 
+      Background="#FF52C3A8">
 
-    <Grid>
-        <WrapPanel Name="wpFoto">
-            <Image x:Name="imgFirst"
-                   Source="{Binding Photo1}" 
-                   Width="100"
-                   Height="100"/>
-            <Image x:Name="imgSecond"
-                   Source="{Binding Photo2}"
-                   Width="100"
-                   Height="100"/>
-            <Image x:Name="imgThirst"
-                   Source="{Binding Photo3}"
-                   Width="100"
-                   Height="100"/>
-            <Image x:Name="imgFourth"
-                   Source="{Binding Photo4}"
-                   Width="100"
-                   Height="100"/>
-            <Image x:Name="imgFive"
-                   Source="{Binding Photo5}"
-                   Width="100"
-                   Height="100"/>
-        </WrapPanel>
-    </Grid>
+    <materialDesign:DialogHost DialogTheme="Inherit"
+                             Identifier="RootDialog"
+                             SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}" 
+                                   LeftDrawerBackground="#FFCFF4D2">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="350">
+                    <StackPanel>
+                        <TextBlock Text="Меню"
+                               HorizontalAlignment="Center"
+                               FontSize="30"
+                               Foreground="#FF215273"
+                               Margin="10"/>
+                        <Button x:Name="btnMainApplication"
+                                Content="Главная страница"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnMainApplication_Click"/>
+                        <Button x:Name="btnAddApplication"
+                                Content="Подать заявку"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnAddApplication_Click"/>
+                        <Button x:Name="btnUserApplication"
+                                Content="Ваши заявки"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserApplication_Click"/>
+                        <Button x:Name="btnUserSignUp"
+                                Content="Ваши участия"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnUserSignUp_Click"/>
+                        <Button x:Name="btnStatistic"
+                                Content="Статистика"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"/>
+                        <Button x:Name="btnExit"
+                                Content="Выйти"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Margin="10"
+                                Click="btnExit_Click"/>
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+            <DockPanel>
+                <materialDesign:ColorZone Padding="16"
+                                  DockPanel.Dock="Top"
+                                  Mode="PrimaryMid" 
+                                  Background="#FFCFF4D2">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton x:Name="MenuToggleButton"
+                            AutomationProperties.Name="HamburgerToggleButton"
+                            IsChecked="False"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right">
+                            <Image x:Name="img_icon"
+                                   Source="/img/icon2.png"
+                                   Width="50"
+                                   Height="50"/>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
 </Page>

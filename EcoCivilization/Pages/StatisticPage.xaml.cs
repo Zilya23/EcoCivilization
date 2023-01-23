@@ -26,28 +26,32 @@ namespace EcoCivilization.Pages
         public StatisticPage()
         {
             InitializeComponent();
-            application = bd_connection.connection.Application.FirstOrDefault(x=> x.ID == 1);
-            int countPhoto = 5;
+            
+        }
 
-            if(countPhoto == 3)
-            {
-                imgFirst.Width = 300;
-                imgFirst.Height = 300;
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
 
-                imgSecond.Width = 300;
-                imgSecond.Height = 300;
+        private void btnUserSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserSignUpApplicationPage());
+        }
 
-                imgThirst.Width = 300;
-                imgThirst.Height = 300;
+        private void btnUserApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserApplicationPage());
+        }
 
-                imgFourth.Width = 300;
-                imgFourth.Height = 300;
+        private void btnAddApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddApplicationPage());
+        }
 
-                imgFive.Width = 300;
-                imgFive.Height = 300;
-            }
-
-            this.DataContext = application;
+        private void btnMainApplication_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainApplicationPage());
         }
     }
 }
