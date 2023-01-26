@@ -108,31 +108,69 @@
                 </materialDesign:ColorZone>
 
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                    <materialDesign:Card>
+                        <TabControl >
+                            <TabItem Header="По пользователю" Background="Green">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
 
-                    
+                                    <TextBlock x:Name="tbCountApplication"
+                                               Text="Количество созданных заявок: "
+                                               Grid.Column="1"
+                                               Grid.Row="1"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                    <TextBlock x:Name="tbCountFollowApplication"
+                                               Text="Количество участий в заявках: "
+                                               Grid.Column="1"
+                                               Grid.Row="2"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                    <TextBlock x:Name="tbDayActiv"
+                                               Text="Количество дней активности: "
+                                               Grid.Column="1"
+                                               Grid.Row="3"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="По городу" Background="Green">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="По миру" Background="Green">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                   
+                                            
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </materialDesign:Card>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

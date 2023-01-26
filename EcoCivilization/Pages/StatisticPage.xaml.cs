@@ -23,10 +23,13 @@ namespace EcoCivilization.Pages
     public partial class StatisticPage : Page
     {
         public static Cora.DataBase.Application application  { get; set; }
+        public static User user { get; set; }
         public StatisticPage()
         {
             InitializeComponent();
-            
+            user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+            tbCountApplication.Text = tbCountApplication.Text + StatisticFunction.CountApplication(user);
+            tbCountFollowApplication.Text = tbCountFollowApplication.Text + StatisticFunction.CountFollowApplication(user);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
