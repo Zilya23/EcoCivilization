@@ -38,5 +38,11 @@ namespace Cora.Functionss
         {
             return bd_connection.connection.User.Where(x => x.ID_City == user.ID_City).Count();
         }
+
+        //
+        public static int CountActivDays(User user)
+        {
+            return (int)(DateTime.Now - user.DateRegist).Value.TotalDays;
+        }
     }
 }

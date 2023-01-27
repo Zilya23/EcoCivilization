@@ -30,6 +30,7 @@ namespace EcoCivilization.Pages
             user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
             tbCountApplication.Text = tbCountApplication.Text + StatisticFunction.CountApplication(user);
             tbCountFollowApplication.Text = tbCountFollowApplication.Text + StatisticFunction.CountFollowApplication(user);
+            tbDayActiv.Text = tbDayActiv.Text + StatisticFunction.CountActivDays(user);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

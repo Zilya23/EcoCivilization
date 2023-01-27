@@ -75,6 +75,16 @@
                                 Width="300"
                                 Margin="10"
                                 Click="btnStatistic_Click"/>
+                        <Button x:Name="btnCat"
+                                Content="Чаты"
+                                HorizontalAlignment="Center"
+                                Background="#FF52C3A8"
+                                Foreground="#FFCFF4D2"
+                                FontSize="30"
+                                Height="50"
+                                Width="300"
+                                Margin="10"
+                                Click="btnCat_Click" Cursor="Hand"/>
                         <Button x:Name="btnExit"
                                 Content="Выйти"
                                 HorizontalAlignment="Center"
@@ -121,7 +131,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="30.667"/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>

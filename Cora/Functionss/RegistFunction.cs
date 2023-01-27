@@ -25,6 +25,7 @@ namespace Cora.Functionss
                 user.Password = userR.Password;
                 user.ID_Role = userR.ID_Role;
                 user.Count_Application = userR.Count_Application;
+                user.DateRegist = DateTime.Now;
                 bd_connection.connection.User.Add(user);
                 bd_connection.connection.SaveChanges();
                 return true;

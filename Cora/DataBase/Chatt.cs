@@ -12,33 +12,29 @@ namespace Cora.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class Chatt
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Application()
+        public Chatt()
         {
-            this.Application_User = new HashSet<Application_User>();
-            this.Chatt = new HashSet<Chatt>();
-            this.PhotoApplication = new HashSet<PhotoApplication>();
+            this.ChatUser = new HashSet<ChatUser>();
+            this.ChatUser1 = new HashSet<ChatUser>();
+            this.Messagee = new HashSet<Messagee>();
         }
     
         public int ID { get; set; }
+        public Nullable<int> IDAdmin { get; set; }
+        public Nullable<int> IDApplication { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> Count_User { get; set; }
-        public string Place { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> ID_City { get; set; }
-        public Nullable<int> IDUser { get; set; }
-        public Nullable<System.TimeSpan> TimeStart { get; set; }
     
-        public virtual City City { get; set; }
+        public virtual Application Application { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application_User> Application_User { get; set; }
+        public virtual ICollection<ChatUser> ChatUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chatt> Chatt { get; set; }
+        public virtual ICollection<ChatUser> ChatUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhotoApplication> PhotoApplication { get; set; }
+        public virtual ICollection<Messagee> Messagee { get; set; }
     }
 }

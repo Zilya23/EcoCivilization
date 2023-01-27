@@ -30,8 +30,11 @@ namespace EcoCivilization.Pages
 
             User user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
 
-            cbCity.ItemsSource = CityFunctions.GetCities();
+            var allCity = CityFunctions.GetCities();
+            allCity.Insert(0, new City() { ID = -1, Name = "Все" });
+            cbCity.ItemsSource = allCity;
             cbCity.DisplayMemberPath = "Name";
+
             this.DataContext = this;
 
             cbCity.SelectedItem = user.City;
@@ -69,13 +72,22 @@ namespace EcoCivilization.Pages
         public void Filter()
         {
             List<Cora.DataBase.Application> filterApplication = applicationList;
-            if (cbCity.SelectedItem != null)
+            if(cbCity.SelectedIndex == -1)
+            {
+                filterApplication = bd_connection.connection.Application.ToList();
+            }
+
+            if (cbCity.SelectedIndex > 0)
             {
                 var selectCity = cbCity.SelectedItem as City;
                 filterApplication = filterApplication.Where(x => x.ID_City == selectCity.ID).ToList();
             }
+            else if (cbCity.SelectedIndex == -1)
+            {
+                filterApplication = bd_connection.connection.Application.ToList();
+            }
 
-            if(dpDate.SelectedDate != null)
+            if (dpDate.SelectedDate != null)
             {
                 var selectedDate = dpDate.SelectedDate;
                 filterApplication = filterApplication.Where(x => x.Date == selectedDate).ToList();
@@ -113,6 +125,11 @@ namespace EcoCivilization.Pages
             var application = (sender as ListView).DataContext as Cora.DataBase.Application;
             if (application != null)
                 NavigationService.Navigate(new ViewApplicationPage(application));
+        }
+
+        private void btnCat_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChatPage());
         }
     }
 }
