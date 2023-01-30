@@ -30,7 +30,7 @@ namespace Cora.Functionss
         //Возвращает все заявки созданные в этом году
         public static int ApplicationYear()
         {
-            return bd_connection.connection.Application.Where(x => Convert.ToDateTime(x.Date).Year == DateTime.Now.Year).Count();
+            return bd_connection.connection.Application.Where(x => ((DateTime)(x.Date)).Year == DateTime.Now.Year).Count();
         }
 
         //количество пользователей из города пользователя
@@ -39,7 +39,7 @@ namespace Cora.Functionss
             return bd_connection.connection.User.Where(x => x.ID_City == user.ID_City).Count();
         }
 
-        //
+        //Количество дней с регистрации
         public static int CountActivDays(User user)
         {
             return (int)(DateTime.Now - user.DateRegist).Value.TotalDays;

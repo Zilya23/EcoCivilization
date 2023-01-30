@@ -31,6 +31,9 @@ namespace EcoCivilization.Pages
             tbCountApplication.Text = tbCountApplication.Text + StatisticFunction.CountApplication(user);
             tbCountFollowApplication.Text = tbCountFollowApplication.Text + StatisticFunction.CountFollowApplication(user);
             tbDayActiv.Text = tbDayActiv.Text + StatisticFunction.CountActivDays(user);
+            tbCountApplicationThisYear.Text = tbCountApplicationThisYear.Text + StatisticFunction.ApplicationYear();
+            tbCountApplicationInYourCity.Text = tbCountApplicationInYourCity.Text + StatisticFunction.CountApplicationCity(user.City);
+            tbCountUserInYourCity.Text = tbCountUserInYourCity.Text + StatisticFunction.CountUserInCity(user);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
