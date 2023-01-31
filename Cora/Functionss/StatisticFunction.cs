@@ -44,5 +44,18 @@ namespace Cora.Functionss
         {
             return (int)(DateTime.Now - user.DateRegist).Value.TotalDays;
         }
+
+        //Количество пользователей в приложении всего
+        public static int CountUser()
+        {
+            return bd_connection.connection.User.Count();
+;       }
+
+        //Количество пользователей в приложении всего
+        public static int CountApplication()
+        {
+            return bd_connection.connection.Application.Count();
+            ;
+        }
     }
 }

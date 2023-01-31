@@ -109,9 +109,9 @@
 
                 <Grid>
                     <materialDesign:Card>
-                        <TabControl >
-                            <TabItem Header="По пользователю" Background="Green">
-                                <Grid>
+                        <TabControl HorizontalContentAlignment="Stretch">
+                            <TabItem Header="По пользователю" Background="Green" HorizontalContentAlignment="Stretch">
+                                <Grid Background="#FF52C3A8">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="3*" />
@@ -125,6 +125,9 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
+                                    <StackPanel Background="#FFCFF4D2"
+                                                Grid.Column="1"
+                                                Grid.Row="1" Grid.RowSpan="4"/>
 
                                     <TextBlock x:Name="tbCountApplication"
                                                Text="Количество созданных заявок: "
@@ -146,8 +149,8 @@
                                                FontSize="20"/>
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="По городу" Background="Green">
-                                <Grid>
+                            <TabItem Header="По городу" Background="Green" HorizontalAlignment="Stretch">
+                                <Grid Background="#FF52C3A8">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="3*" />
@@ -162,6 +165,9 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
+                                    <StackPanel Background="#FFCFF4D2"
+                                                Grid.Column="1"
+                                                Grid.Row="1" Grid.RowSpan="4"/>
                                     <TextBlock x:Name="tbCountUserInYourCity"
                                                Text="Количество пользователей в вашем городе: "
                                                Grid.Column="1"
@@ -177,8 +183,8 @@
 
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="По миру" Background="Green">
-                                <Grid>
+                            <TabItem Header="По миру" Background="Green" HorizontalAlignment="Stretch">
+                                <Grid Background="#FF52C3A8">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="3*" />
@@ -192,11 +198,26 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
+                                    <StackPanel Background="#FFCFF4D2"
+                                                Grid.Column="1"
+                                                Grid.Row="1" Grid.RowSpan="4"/>
 
-                                    <TextBlock x:Name="tbCountApplicationThisYear"
+                                    <TextBlock x:Name="tbAllCountApplication"
                                                Text="Количество созданных заявок за этот год: "
                                                Grid.Column="1"
                                                Grid.Row="1"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                    <TextBlock x:Name="tbCountApplicationThisYear"
+                                               Text="Количество созданных заявок за этот год: "
+                                               Grid.Column="1"
+                                               Grid.Row="2"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                    <TextBlock x:Name="tbCountUser"
+                                               Text="Количество пользователей: "
+                                               Grid.Column="1"
+                                               Grid.Row="3"
                                                HorizontalAlignment="Center"
                                                FontSize="20"/>
 
