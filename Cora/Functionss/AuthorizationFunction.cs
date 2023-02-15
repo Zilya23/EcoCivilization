@@ -11,6 +11,11 @@ namespace Cora.Functionss
     {
         public static List<User> users { get; set; }
 
+        public static List<User> GetUsers()
+        {
+            return users = new List<User>(bd_connection.connection.User.ToList());
+        }
+
         public static User AuthorizationUser(string login, string password)
         {
             users = new List<User>(bd_connection.connection.User.ToList());

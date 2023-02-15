@@ -107,6 +107,7 @@
     <Compile Include="Functionss\RegistFunction.cs" />
     <Compile Include="DataBase\bd_connection.cs" />
     <Compile Include="Functionss\StatisticFunction.cs" />
+    <Compile Include="Models\ApplicationModel.cs" />
     <Compile Include="Partial\ApplicationPartial.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
