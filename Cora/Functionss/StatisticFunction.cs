@@ -12,7 +12,7 @@ namespace Cora.Functionss
         //количество заявок созданных пользователем
         public static int CountApplication(User user)
         {
-            return bd_connection.connection.Application.Where(x => x.IDUser == user.ID).Count();
+            return user.Application.Count();
         }
 
         //количество заявок в которых пользователь участвовал

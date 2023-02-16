@@ -14,7 +14,12 @@ namespace Cora.Models
             ID = application.ID;
             Name= application.Name;
             Date = application.Date;
-
+            Count_User = application.Count_User;
+            Place = application.Place;
+            Description = application.Description;
+            ID_City = application.ID_City;
+            IDUser = application.IDUser;
+            TimeStart = application.TimeStart;
         }
         public int ID { get; set; }
         public string Name { get; set; }

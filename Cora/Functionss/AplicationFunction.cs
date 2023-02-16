@@ -9,10 +9,6 @@ namespace Cora.Functionss
 {
     public class AplicationFunction
     {
-        public static List<Application> GetAllApplications()
-        {
-            List<Application> applications = bd_connection.connection.Application.ToList();
-            return applications;
-        }
+        public static List<Application> GetAllApplications() => bd_connection.connection.Application.ToList();
     }
 }

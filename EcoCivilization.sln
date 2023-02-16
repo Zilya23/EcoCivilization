@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoCivilization", "EcoCivil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cora", "Cora\Cora.csproj", "{8C0B9B62-EFF7-4D4C-90EA-F1B45E2D3D54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoCivilizationAPI", "EcoCivilizationAPI\EcoCivilizationAPI.csproj", "{C4D6BB9B-FD91-44EE-8D15-A0ACC3E136C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoCivilizationAPI", "EcoCivilizationAPI\EcoCivilizationAPI.csproj", "{2843BABD-B188-47D8-ABE5-8181CBBAC530}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +26,10 @@ Global
 		{8C0B9B62-EFF7-4D4C-90EA-F1B45E2D3D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C0B9B62-EFF7-4D4C-90EA-F1B45E2D3D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C0B9B62-EFF7-4D4C-90EA-F1B45E2D3D54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4D6BB9B-FD91-44EE-8D15-A0ACC3E136C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4D6BB9B-FD91-44EE-8D15-A0ACC3E136C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4D6BB9B-FD91-44EE-8D15-A0ACC3E136C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4D6BB9B-FD91-44EE-8D15-A0ACC3E136C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2843BABD-B188-47D8-ABE5-8181CBBAC530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2843BABD-B188-47D8-ABE5-8181CBBAC530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2843BABD-B188-47D8-ABE5-8181CBBAC530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2843BABD-B188-47D8-ABE5-8181CBBAC530}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

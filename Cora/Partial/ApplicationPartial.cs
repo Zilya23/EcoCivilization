@@ -9,22 +9,22 @@ namespace Cora.DataBase
 {
     public partial class Application
     {
-        public Application(Application application)
-        {
-            ID = application.ID;
-            Name = application.Name;
-            Date = application.Date;
-            Count_User = application.Count_User;
-            Place = application.Place;
-            Description = application.Description;
-            ID_City = application.ID_City;
-            IDUser = application.IDUser;
-            TimeStart = application.TimeStart;
-            PhotoApplication = new List<PhotoApplication>
-            {
-                new PhotoApplication()
-            };
-        }
+        //public Application(Application application)
+        //{
+        //    ID = application.ID;
+        //    Name = application.Name;
+        //    Date = application.Date;
+        //    Count_User = application.Count_User;
+        //    Place = application.Place;
+        //    Description = application.Description;
+        //    ID_City = application.ID_City;
+        //    IDUser = application.IDUser;
+        //    TimeStart = application.TimeStart;
+        //    PhotoApplication = new List<PhotoApplication>
+        //    {
+        //        new PhotoApplication()
+        //    };
+        //}
 
         public int PhotoWidth => 1200 / PhotoApplication.Count();
         public int PhotoHeight => 900 / PhotoApplication.Count();
