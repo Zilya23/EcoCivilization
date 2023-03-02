@@ -1,10 +1,14 @@
 using EcoCivilizationAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+    options.AddPolicy("MyAllow", policy =>
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 builder.Services.AddControllers();
 builder.Services.AddDbContext<EcoCivilizationContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
@@ -20,6 +24,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("MyAllow");
 
 app.UseAuthorization();
 

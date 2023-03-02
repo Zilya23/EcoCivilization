@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoCivilization", "EcoCivil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cora", "Cora\Cora.csproj", "{8C0B9B62-EFF7-4D4C-90EA-F1B45E2D3D54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoCivilizationAPI", "EcoCivilizationAPI\EcoCivilizationAPI.csproj", "{2843BABD-B188-47D8-ABE5-8181CBBAC530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoCivilizationAPI", "EcoCivilizationAPI\EcoCivilizationAPI.csproj", "{2843BABD-B188-47D8-ABE5-8181CBBAC530}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
