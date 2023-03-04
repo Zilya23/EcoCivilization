@@ -109,10 +109,12 @@ namespace EcoCivilizationAPI.Controllers
             return _context.Users.Any(e => (e.Login == login && e.Password == password) || e.Telephone == telephone);
         }
 
-        [HttpGet("{login, password}")]
+        // POST: api/Users/login
+        [Route("login")]
+        [HttpPost]
         public async Task<ActionResult<User>> Login(string login, string password)
         {
-            var user = await _context.Users.FindAsync(login, password);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Password == password);
             if (user == null)
             {
                 return NotFound();
@@ -121,20 +123,24 @@ namespace EcoCivilizationAPI.Controllers
             return user;
         }
 
-        [HttpGet("{name, surname, telephone, idCity, idGender, idRole, login, password, dateRegist}")]
+        // POST: api/Users/reg
+        [Route("reg")]
+        [HttpPost]
         public async Task<ActionResult<User>> Regist(string name, string surname, string telephone, int idCity,
-                                                     int idGender, int idRole, string login, string password, DateTime dateRegist)
+                                                     int idGender, int idRole, string login, string password)
         {
-            User newUser = new User();
-            newUser.Name = name;
-            newUser.Surname = surname;
-            newUser.Telephone = telephone;
-            newUser.IdCity= idCity; 
-            newUser.IdGender = idGender; 
-            newUser.IdRole = idRole;
-            newUser.Login = login;
-            newUser.Password = password;
-            newUser.DateRegist = dateRegist;
+            User newUser = new User
+            {
+                Name = name,
+                Surname = surname,
+                Telephone = telephone,
+                IdCity = idCity,
+                IdGender = idGender,
+                IdRole = idRole,
+                Login = login,
+                Password = password,
+                DateRegist = DateTime.Now
+            };
 
             if (UserExists(newUser.Login, newUser.Password, newUser.Telephone))
             {
