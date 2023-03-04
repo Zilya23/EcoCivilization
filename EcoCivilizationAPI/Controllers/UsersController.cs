@@ -103,5 +103,50 @@ namespace EcoCivilizationAPI.Controllers
         {
             return _context.Users.Any(e => e.Id == id);
         }
+
+        private bool UserExists(string login, string password, string telephone)
+        {
+            return _context.Users.Any(e => (e.Login == login && e.Password == password) || e.Telephone == telephone);
+        }
+
+        [HttpGet("{login, password}")]
+        public async Task<ActionResult<User>> Login(string login, string password)
+        {
+            var user = await _context.Users.FindAsync(login, password);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+        [HttpGet("{name, surname, telephone, idCity, idGender, idRole, login, password, dateRegist}")]
+        public async Task<ActionResult<User>> Regist(string name, string surname, string telephone, int idCity,
+                                                     int idGender, int idRole, string login, string password, DateTime dateRegist)
+        {
+            User newUser = new User();
+            newUser.Name = name;
+            newUser.Surname = surname;
+            newUser.Telephone = telephone;
+            newUser.IdCity= idCity; 
+            newUser.IdGender = idGender; 
+            newUser.IdRole = idRole;
+            newUser.Login = login;
+            newUser.Password = password;
+            newUser.DateRegist = dateRegist;
+
+            if (UserExists(newUser.Login, newUser.Password, newUser.Telephone))
+            {
+                var user = await _context.Users.AddAsync(newUser);
+                var sucsessfull = await _context.SaveChangesAsync();
+                if (!Convert.ToBoolean(sucsessfull))
+                    return Ok(user);
+
+                return Conflict(); // если пользователь почему-то не сохранился
+            }
+            else
+                return NotFound(); // если логин пароль или телефон не уникальны
+        }
     }
 }
