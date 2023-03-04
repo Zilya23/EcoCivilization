@@ -123,8 +123,8 @@ namespace EcoCivilizationAPI.Controllers
             return user;
         }
 
-        // POST: api/Users/reg
-        [Route("reg")]
+        // POST: api/Users/registration
+        [Route("registration")]
         [HttpPost]
         public async Task<ActionResult<User>> Regist(string name, string surname, string telephone, int idCity,
                                                      int idGender, int idRole, string login, string password)
