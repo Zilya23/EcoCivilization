@@ -22,15 +22,15 @@ namespace EcoCivilization.Pages
     /// </summary>
     public partial class ChatPage : Page
     {
-        public List<ChatUser> chatUsers { get; set; }
-        public static User user { get; set; }
-        public ChatPage()
-        {
-            InitializeComponent();
-            user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
-            chatUsers = ChatFunction.GetUserChatt(user);
-            DataContext = this;
-        }
+        //public List<ChatUser> chatUsers { get; set; }
+        //public static User user { get; set; }
+        //public ChatPage()
+        //{
+        //    InitializeComponent();
+        //    user = AuthorizationFunction.AuthorizationUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+        //    chatUsers = ChatFunction.GetUserChatt(user);
+        //    DataContext = this;
+        //}
 
         private void btnMainApplication_Click(object sender, RoutedEventArgs e)
         {

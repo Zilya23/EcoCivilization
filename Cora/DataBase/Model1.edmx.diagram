@@ -4,34 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6ccca9805d1e493d95a7f8f27d49729b" Name="Diagram1">
-        <EntityTypeShape EntityType="EcoCivilizationModel.Application" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Application_User" Width="1.5" PointX="8.25" PointY="9.125" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Chatt" Width="1.5" PointX="11.25" PointY="8.75" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.ChatUser" Width="1.5" PointX="13.5" PointY="8.875" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.City" Width="1.5" PointX="0.75" PointY="9.375" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Gender" Width="1.5" PointX="3.75" PointY="5.25" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Messagee" Width="1.5" PointX="16.5" PointY="9" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.PhotoApplication" Width="1.5" PointX="5.25" PointY="16" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Role" Width="1.5" PointX="3.75" PointY="2.625" />
+      <Diagram DiagramId="5093cd843e564f5da904ddbb371291a3" Name="Diagram1">
+        <EntityTypeShape EntityType="EcoCivilizationModel.Application" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Application_User" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.City" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Gender" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.PhotoApplication" Width="1.5" PointX="5.25" PointY="9.125" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Role" Width="1.5" PointX="3.75" PointY="12.5" />
         <EntityTypeShape EntityType="EcoCivilizationModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.User" Width="1.5" PointX="6" PointY="7.875" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.User" Width="1.5" PointX="6" PointY="4.125" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_City" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_User" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_User_Application" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_Chatt_Application" />
         <AssociationConnector Association="EcoCivilizationModel.FK_PhotoApplication_Application" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_User_User" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_Chatt_User" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_ChatUser_Chatt" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_ChatUser_Chatt1" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_Messagee_Chatt" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_ChatUser_Messagee" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_ChatUser_User" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_ChatUser_User1" />
         <AssociationConnector Association="EcoCivilizationModel.FK_User_City" />
         <AssociationConnector Association="EcoCivilizationModel.FK_User_Gender" />
-        <AssociationConnector Association="EcoCivilizationModel.FK_Messagee_User" />
         <AssociationConnector Association="EcoCivilizationModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>

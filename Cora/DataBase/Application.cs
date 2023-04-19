@@ -18,7 +18,6 @@ namespace Cora.DataBase
         public Application()
         {
             this.Application_User = new HashSet<Application_User>();
-            this.Chatt = new HashSet<Chatt>();
             this.PhotoApplication = new HashSet<PhotoApplication>();
         }
     
@@ -36,8 +35,6 @@ namespace Cora.DataBase
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application_User> Application_User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chatt> Chatt { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhotoApplication> PhotoApplication { get; set; }
     }

@@ -17,6 +17,7 @@ namespace Cora.DataBase
         public int ID { get; set; }
         public byte[] Photo { get; set; }
         public Nullable<int> IDApplicatioon { get; set; }
+        public string ImagePhoto { get; set; }
     
         public virtual Application Application { get; set; }
     }
