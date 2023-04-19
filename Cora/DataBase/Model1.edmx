@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище EcoCivilizationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище EcoCivilizationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="ID" />
@@ -47,9 +47,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Photo" Type="image" />
+          <Property Name="Photo" Type="varbinary(max)" />
           <Property Name="IDApplicatioon" Type="int" />
-          <Property Name="ImagePhoto" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -82,7 +81,7 @@
           <Property Name="Count_Application" Type="int" />
           <Property Name="Login" Type="varchar" MaxLength="20" />
           <Property Name="Password" Type="varchar" MaxLength="20" />
-          <Property Name="DateRegist" Type="datetime" />
+          <Property Name="DateRegist" Type="date" />
         </EntityType>
         <Association Name="FK_Application_City">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
@@ -222,52 +221,11 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcoCivilizationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="EcoCivilizationEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Application" EntityType="EcoCivilizationModel.Application" />
-          <EntitySet Name="Application_User" EntityType="EcoCivilizationModel.Application_User" />
-          <EntitySet Name="City" EntityType="EcoCivilizationModel.City" />
-          <EntitySet Name="Gender" EntityType="EcoCivilizationModel.Gender" />
-          <EntitySet Name="PhotoApplication" EntityType="EcoCivilizationModel.PhotoApplication" />
-          <EntitySet Name="Role" EntityType="EcoCivilizationModel.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="EcoCivilizationModel.sysdiagrams" />
-          <EntitySet Name="User" EntityType="EcoCivilizationModel.User" />
-          <AssociationSet Name="FK_Application_City" Association="EcoCivilizationModel.FK_Application_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="Application" EntitySet="Application" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Application_User" Association="EcoCivilizationModel.FK_Application_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Application" EntitySet="Application" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Application_User_Application" Association="EcoCivilizationModel.FK_Application_User_Application">
-            <End Role="Application" EntitySet="Application" />
-            <End Role="Application_User" EntitySet="Application_User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhotoApplication_Application" Association="EcoCivilizationModel.FK_PhotoApplication_Application">
-            <End Role="Application" EntitySet="Application" />
-            <End Role="PhotoApplication" EntitySet="PhotoApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Application_User_User" Association="EcoCivilizationModel.FK_Application_User_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Application_User" EntitySet="Application_User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_City" Association="EcoCivilizationModel.FK_User_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="EcoCivilizationModel.FK_User_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="EcoCivilizationModel.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="ID" />
@@ -281,10 +239,10 @@
           <Property Name="ID_City" Type="Int32" />
           <Property Name="IDUser" Type="Int32" />
           <Property Name="TimeStart" Type="Time" Precision="7" />
-          <NavigationProperty Name="City" Relationship="EcoCivilizationModel.FK_Application_City" FromRole="Application" ToRole="City" />
-          <NavigationProperty Name="User" Relationship="EcoCivilizationModel.FK_Application_User" FromRole="Application" ToRole="User" />
-          <NavigationProperty Name="Application_User" Relationship="EcoCivilizationModel.FK_Application_User_Application" FromRole="Application" ToRole="Application_User" />
-          <NavigationProperty Name="PhotoApplication" Relationship="EcoCivilizationModel.FK_PhotoApplication_Application" FromRole="Application" ToRole="PhotoApplication" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Application_City" FromRole="Application" ToRole="City" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Application_User" FromRole="Application" ToRole="User" />
+          <NavigationProperty Name="Application_User" Relationship="Self.FK_Application_User_Application" FromRole="Application" ToRole="Application_User" />
+          <NavigationProperty Name="PhotoApplication" Relationship="Self.FK_PhotoApplication_Application" FromRole="Application" ToRole="PhotoApplication" />
         </EntityType>
         <EntityType Name="Application_User">
           <Key>
@@ -294,8 +252,8 @@
           <Property Name="ID_Application" Type="Int32" />
           <Property Name="ID_User" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Application" Relationship="EcoCivilizationModel.FK_Application_User_Application" FromRole="Application_User" ToRole="Application" />
-          <NavigationProperty Name="User" Relationship="EcoCivilizationModel.FK_Application_User_User" FromRole="Application_User" ToRole="User" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_User_Application" FromRole="Application_User" ToRole="Application" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Application_User_User" FromRole="Application_User" ToRole="User" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -303,8 +261,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Application" Relationship="EcoCivilizationModel.FK_Application_City" FromRole="City" ToRole="Application" />
-          <NavigationProperty Name="User" Relationship="EcoCivilizationModel.FK_User_City" FromRole="City" ToRole="User" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_City" FromRole="City" ToRole="Application" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_City" FromRole="City" ToRole="User" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -312,7 +270,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="EcoCivilizationModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="PhotoApplication">
           <Key>
@@ -321,8 +279,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IDApplicatioon" Type="Int32" />
-          <Property Name="ImagePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Application" Relationship="EcoCivilizationModel.FK_PhotoApplication_Application" FromRole="PhotoApplication" ToRole="Application" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_PhotoApplication_Application" FromRole="PhotoApplication" ToRole="Application" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -330,13 +287,13 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="EcoCivilizationModel.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -356,16 +313,16 @@
           <Property Name="Count_Application" Type="Int32" />
           <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DateRegist" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Application" Relationship="EcoCivilizationModel.FK_Application_User" FromRole="User" ToRole="Application" />
-          <NavigationProperty Name="Application_User" Relationship="EcoCivilizationModel.FK_Application_User_User" FromRole="User" ToRole="Application_User" />
-          <NavigationProperty Name="City" Relationship="EcoCivilizationModel.FK_User_City" FromRole="User" ToRole="City" />
-          <NavigationProperty Name="Gender" Relationship="EcoCivilizationModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="Role" Relationship="EcoCivilizationModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <Property Name="DateRegist" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_User" FromRole="User" ToRole="Application" />
+          <NavigationProperty Name="Application_User" Relationship="Self.FK_Application_User_User" FromRole="User" ToRole="Application_User" />
+          <NavigationProperty Name="City" Relationship="Self.FK_User_City" FromRole="User" ToRole="City" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Application_City">
-          <End Type="EcoCivilizationModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.Application" Role="Application" Multiplicity="*" />
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
               <PropertyRef Name="ID" />
@@ -376,8 +333,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_User">
-          <End Type="EcoCivilizationModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.Application" Role="Application" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
@@ -388,8 +345,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_User_Application">
-          <End Type="EcoCivilizationModel.Application" Role="Application" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.Application_User" Role="Application_User" Multiplicity="*" />
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="Application_User" Type="Self.Application_User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Application">
               <PropertyRef Name="ID" />
@@ -400,8 +357,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PhotoApplication_Application">
-          <End Type="EcoCivilizationModel.Application" Role="Application" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.PhotoApplication" Role="PhotoApplication" Multiplicity="*" />
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="PhotoApplication" Type="Self.PhotoApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Application">
               <PropertyRef Name="ID" />
@@ -412,8 +369,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_User_User">
-          <End Type="EcoCivilizationModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.Application_User" Role="Application_User" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application_User" Type="Self.Application_User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
@@ -424,8 +381,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_City">
-          <End Type="EcoCivilizationModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.User" Role="User" Multiplicity="*" />
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
               <PropertyRef Name="ID" />
@@ -436,8 +393,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Gender">
-          <End Type="EcoCivilizationModel.Gender" Role="Gender" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.User" Role="User" Multiplicity="*" />
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Gender">
               <PropertyRef Name="ID" />
@@ -448,8 +405,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Type="EcoCivilizationModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="EcoCivilizationModel.User" Role="User" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="ID" />
@@ -459,96 +416,137 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="EcoCivilizationEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application" EntityType="Self.Application" />
+          <EntitySet Name="Application_User" EntityType="Self.Application_User" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="PhotoApplication" EntityType="Self.PhotoApplication" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Application_City" Association="Self.FK_Application_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_User" Association="Self.FK_Application_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_User_Application" Association="Self.FK_Application_User_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Application_User" EntitySet="Application_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoApplication_Application" Association="Self.FK_PhotoApplication_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="PhotoApplication" EntitySet="PhotoApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_User_User" Association="Self.FK_Application_User_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application_User" EntitySet="Application_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище EcoCivilizationModelContainer" CdmEntityContainer="EcoCivilizationEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище EcoCivilizationModelContainer" CdmEntityContainer="EcoCivilizationEntities1">
           <EntitySetMapping Name="Application">
             <EntityTypeMapping TypeName="EcoCivilizationModel.Application">
               <MappingFragment StoreEntitySet="Application">
-                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
-                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
-                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="Count_User" ColumnName="Count_User" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Count_User" ColumnName="Count_User" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Application_User">
             <EntityTypeMapping TypeName="EcoCivilizationModel.Application_User">
               <MappingFragment StoreEntitySet="Application_User">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
-                <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
             <EntityTypeMapping TypeName="EcoCivilizationModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="EcoCivilizationModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhotoApplication">
             <EntityTypeMapping TypeName="EcoCivilizationModel.PhotoApplication">
               <MappingFragment StoreEntitySet="PhotoApplication">
-                <ScalarProperty Name="ImagePhoto" ColumnName="ImagePhoto" />
-                <ScalarProperty Name="IDApplicatioon" ColumnName="IDApplicatioon" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IDApplicatioon" ColumnName="IDApplicatioon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="EcoCivilizationModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="EcoCivilizationModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="EcoCivilizationModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="DateRegist" ColumnName="DateRegist" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Count_Application" ColumnName="Count_Application" />
-                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
-                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
-                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Count_Application" ColumnName="Count_Application" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateRegist" ColumnName="DateRegist" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
