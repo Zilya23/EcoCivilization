@@ -7,7 +7,7 @@ public partial class PhotoApplication
 {
     public int Id { get; set; }
 
-    public byte[]? Photo { get; set; }
+    public string? Photo { get; set; }
 
     public int? Idapplicatioon { get; set; }
 

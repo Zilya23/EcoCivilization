@@ -24,14 +24,18 @@ namespace EcoCivilizationAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
         {
-            return await _context.Applications.ToListAsync();
+            return await _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .ToListAsync();
         }
 
         // GET: api/Applications/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Application>> GetApplication(int id)
+        public ActionResult<Application> GetApplication(int id)
         {
-            var application = await _context.Applications.FindAsync(id);
+            var application = _context.Applications.Include(x => x.PhotoApplications)
+                                                   .Include(x => x.ApplicationUsers)
+                                                   .ToList().FirstOrDefault(x => x.Id == id);
 
             if (application == null)
             {

@@ -130,7 +130,7 @@ namespace EcoCivilization.Pages
                 if (openFile.ShowDialog().GetValueOrDefault())
                 {
                     PhotoApplication photo = new PhotoApplication();
-                    photo.Photo = File.ReadAllBytes(openFile.FileName);
+                    //photo.Photo = File.ReadAllBytes(openFile.FileName);
                     photo.Application = applications;
                     bd_connection.connection.PhotoApplication.Add(photo);
                     lvPhoto.ItemsSource = applications.PhotoApplication;
