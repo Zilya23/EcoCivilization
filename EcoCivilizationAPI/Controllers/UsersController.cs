@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcoCivilizationAPI.Models;
+using EcoCivilizationAPI.ShortModels;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -112,9 +113,9 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/Users/login
         [Route("login")]
         [HttpPost]
-        public async Task<ActionResult<User>> Login(string login, string password)
+        public async Task<ActionResult<User>> Login(UserModel userModel)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Password == password);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == userModel.Login && x.Password == userModel.Password);
             if (user == null)
             {
                 return NotFound();
