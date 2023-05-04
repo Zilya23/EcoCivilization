@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcoCivilizationAPI.Models;
+using System.Security.Cryptography;
+using System.Runtime.Serialization.Formatters.Binary;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -112,7 +117,7 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/Users/login
         [Route("login")]
         [HttpPost]
-        public async Task<ActionResult<User>> Login(string login, string password)
+        public async Task<ActionResult<string>> Login(string login, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Password == password);
             if (user == null)
@@ -120,8 +125,41 @@ namespace EcoCivilizationAPI.Controllers
                 return NotFound();
             }
 
-            return user;
+            var claims = new List<Claim> { new Claim(ClaimTypes.Authentication, user.Login) };
+
+            var jwt = new JwtSecurityToken(
+            issuer: AuthOptions.ISSUER,
+            claims: claims,
+            audience: AuthOptions.AUDIENCE,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
+        byte[] ObjectToByteArray(object obj)
+        {
+            if (obj == null)
+                return null;
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, obj);
+                return ms.ToArray();
+            }
+        }
+
+        //public string GetToken(User user)
+        //{
+        //    var SECRET_KEY = "cAtwa1kkEy";
+        //    Header header = new Header(){alg="HS256", type="JWT"};
+        //    var unsignedHeader = Convert.ToBase64String(ObjectToByteArray(header));
+        //    var unsignedPayload = Convert.ToBase64String(ObjectToByteArray(user));
+        //    var unsignedToken = unsignedHeader + '.' + unsignedPayload;
+        //    var signature = HMAC.Create();
+
+
+
+        //}
 
         // POST: api/Users/registration
         [Route("registration")]
@@ -154,5 +192,11 @@ namespace EcoCivilizationAPI.Controllers
             else
                 return NotFound(); // если логин пароль или телефон не уникальны
         }
+    }
+
+    public class Header
+    {
+        public string alg { get; set; }
+        public string type { get; set; }
     }
 }

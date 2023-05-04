@@ -22,8 +22,10 @@ namespace EcoCivilizationAPI.Controllers
 
         // GET: api/Applications
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplications([FromHeader] string token)
         {
+            // Проверка корректности токена
+
             return await _context.Applications.Include(x => x.PhotoApplications)
                                               .Include(x => x.ApplicationUsers)
                                               .ToListAsync();
@@ -35,6 +37,7 @@ namespace EcoCivilizationAPI.Controllers
         {
             var application = _context.Applications.Include(x => x.PhotoApplications)
                                                    .Include(x => x.ApplicationUsers)
+                                                   .Include(x => x.IdCityNavigation)
                                                    .ToList().FirstOrDefault(x => x.Id == id);
 
             if (application == null)
