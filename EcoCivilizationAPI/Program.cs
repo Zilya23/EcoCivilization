@@ -9,6 +9,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using EcoCivilizationAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,27 +22,8 @@ builder.Services.AddDbContext<EcoCivilizationContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
 
 builder.Services.AddAuthorization();
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            // указывает, будет ли валидироваться издатель при валидации токена
-//            ValidateIssuer = true,
-//            // строка, представляющая издателя
-//            ValidIssuer = AuthOptions.ISSUER,
-//            // будет ли валидироваться потребитель токена
-//            ValidateAudience = true,
-//            // установка потребителя токена
-//            ValidAudience = AuthOptions.AUDIENCE,
-//            // будет ли валидироваться время существования
-//            ValidateLifetime = true,
-//            // установка ключа безопасности
-//            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-//            // валидация ключа безопасности
-//            ValidateIssuerSigningKey = true,
-//        };
-//    });
+
+builder.Services.AddSingleton<TokenService>();
 
 Console.WriteLine("Debug " + builder.Configuration.GetConnectionString("connection"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

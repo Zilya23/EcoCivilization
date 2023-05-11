@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcoCivilizationAPI.Models;
+using EcoCivilizationAPI.Service;
+using NuGet.Common;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -14,10 +16,12 @@ namespace EcoCivilizationAPI.Controllers
     public class ApplicationsController : ControllerBase
     {
         private readonly EcoCivilizationContext _context;
+        private TokenService _tokenService;
 
-        public ApplicationsController(EcoCivilizationContext context)
+        public ApplicationsController(EcoCivilizationContext context, TokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         // GET: api/Applications
@@ -82,12 +86,17 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/Applications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Application>> PostApplication(Application application)
+        public async Task<ActionResult<Application>> PostApplication([FromHeader] string token, Application application)
         {
-            _context.Applications.Add(application);
-            await _context.SaveChangesAsync();
+            if(Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                _context.Applications.Add(application);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetApplication", new { id = application.Id }, application);
+                return CreatedAtAction("GetApplication", new { id = application.Id }, application);
+            }
+            return Unauthorized();
+            
         }
 
         // DELETE: api/Applications/5
