@@ -22,7 +22,7 @@ namespace EcoCivilizationAPI.Controllers
 
         // GET: api/Applications
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Application>>> GetApplications([FromHeader] string token)
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
         {
             // Проверка корректности токена
 

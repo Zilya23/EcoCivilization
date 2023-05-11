@@ -21,27 +21,27 @@ builder.Services.AddDbContext<EcoCivilizationContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
 
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            // указывает, будет ли валидироваться издатель при валидации токена
-            ValidateIssuer = true,
-            // строка, представляющая издателя
-            ValidIssuer = AuthOptions.ISSUER,
-            // будет ли валидироваться потребитель токена
-            ValidateAudience = true,
-            // установка потребителя токена
-            ValidAudience = AuthOptions.AUDIENCE,
-            // будет ли валидироваться время существования
-            ValidateLifetime = true,
-            // установка ключа безопасности
-            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-            // валидация ключа безопасности
-            ValidateIssuerSigningKey = true,
-        };
-    });
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(options =>
+//    {
+//        options.TokenValidationParameters = new TokenValidationParameters
+//        {
+//            // указывает, будет ли валидироваться издатель при валидации токена
+//            ValidateIssuer = true,
+//            // строка, представляющая издателя
+//            ValidIssuer = AuthOptions.ISSUER,
+//            // будет ли валидироваться потребитель токена
+//            ValidateAudience = true,
+//            // установка потребителя токена
+//            ValidAudience = AuthOptions.AUDIENCE,
+//            // будет ли валидироваться время существования
+//            ValidateLifetime = true,
+//            // установка ключа безопасности
+//            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+//            // валидация ключа безопасности
+//            ValidateIssuerSigningKey = true,
+//        };
+//    });
 
 Console.WriteLine("Debug " + builder.Configuration.GetConnectionString("connection"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -65,29 +65,29 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Map("/login/{username}", (string username) =>
-{
-    var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
-    // создаем JWT-токен
-    var jwt = new JwtSecurityToken(
-            issuer: AuthOptions.ISSUER,
-            audience: AuthOptions.AUDIENCE,
-            claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+//app.Map("/login/{username}", (string username) =>
+//{
+//    var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+//    // создаем JWT-токен
+//    var jwt = new JwtSecurityToken(
+//            issuer: AuthOptions.ISSUER,
+//            audience: AuthOptions.AUDIENCE,
+//            claims: claims,
+//            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+//            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
 
-    return new JwtSecurityTokenHandler().WriteToken(jwt);
-});
+//    return new JwtSecurityTokenHandler().WriteToken(jwt);
+//});
 
 app.Map("/data", [Authorize] () => new { message = "Hello World!" });
 
 app.Run();
 
-public class AuthOptions
-{
-    public const string ISSUER = "MyAuthServer"; // издатель токена
-    public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-    const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
-    public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
-        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
-}
+//public class AuthOptions
+//{
+//    public const string ISSUER = "MyAuthServer"; // издатель токена
+//    public const string AUDIENCE = "MyAuthClient"; // потребитель токена
+//    const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
+//    public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
+//        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
+//}

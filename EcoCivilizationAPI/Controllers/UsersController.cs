@@ -125,16 +125,17 @@ namespace EcoCivilizationAPI.Controllers
                 return NotFound();
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Authentication, user.Login) };
+            //var claims = new List<Claim> { new Claim(ClaimTypes.Authentication, user.Login) };
 
-            var jwt = new JwtSecurityToken(
-            issuer: AuthOptions.ISSUER,
-            claims: claims,
-            audience: AuthOptions.AUDIENCE,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            //var jwt = new JwtSecurityToken(
+            //issuer: AuthOptions.ISSUER,
+            //claims: claims,
+            //audience: AuthOptions.AUDIENCE,
+            //expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            //signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
 
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            //return new JwtSecurityTokenHandler().WriteToken(jwt);
+            return string.Empty;
         }
         byte[] ObjectToByteArray(object obj)
         {
