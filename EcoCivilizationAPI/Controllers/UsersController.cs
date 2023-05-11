@@ -122,19 +122,19 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/Users/login
         [Route("login")]
         [HttpPost]
-        public async Task<ActionResult<string>> Login(string login, string password)
+        public async Task<ActionResult<string>> Login([FromBody] User user)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Password == password);
-            if (user == null)
+            var userLog = await _context.Users.FirstOrDefaultAsync(x => x.Login == user.Login && x.Password == user.Password);
+            if (userLog == null)
             {
                 return NotFound();
             }
             //Проверка правильности пароля (С хешированием)
 
-            string token = _tokenService.GetToken(user);
+            string token = _tokenService.GetToken(userLog);
 
 
-            return Ok(token);
+            return Ok(new {token = token});
         }
        
 
