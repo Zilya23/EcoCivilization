@@ -114,9 +114,9 @@ namespace EcoCivilizationAPI.Controllers
             return _context.Users.Any(e => e.Id == id);
         }
 
-        private bool UserExists(string login, string password, string telephone)
+        private bool UserExists(string login, string telephone)
         {
-            return _context.Users.Any(e => (e.Login == login && e.Password == password) || e.Telephone == telephone);
+            return _context.Users.Any(e => e.Login == login || e.Telephone == telephone);
         }
 
         // POST: api/Users/login
@@ -141,33 +141,33 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/Users/registration
         [Route("registration")]
         [HttpPost]
-        public async Task<ActionResult<User>> Regist(string name, string surname, string telephone, int idCity,
-                                                     int idGender, int idRole, string login, string password)
+        public async Task<ActionResult<User>> Regist([FromBody] User user)
         {
             User newUser = new User
             {
-                Name = name,
-                Surname = surname,
-                Telephone = telephone,
-                IdCity = idCity,
-                IdGender = idGender,
-                IdRole = idRole,
-                Login = login,
-                Password = password,
-                DateRegist = DateTime.Now
+                Name = user.Name,
+                Surname = user.Surname,
+                Telephone = user.Telephone,
+                IdCity = user.IdCity,
+                IdGender = user.IdGender,
+                IdRole = 2,
+                Login = user.Login,
+                Password = user.Password,
+                DateRegist = DateTime.Now,
+                CountApplication = 0,
             };
 
-            if (UserExists(newUser.Login, newUser.Password, newUser.Telephone))
+            if (!UserExists(user.Login, user.Telephone))
             {
-                var user = await _context.Users.AddAsync(newUser);
+                var userSave = await _context.Users.AddAsync(newUser);
                 var sucsessfull = await _context.SaveChangesAsync();
-                if (!Convert.ToBoolean(sucsessfull))
-                    return Ok(user);
-
-                return Conflict(); // если пользователь почему-то не сохранился
+                if (Convert.ToBoolean(sucsessfull))
+                    return Ok();
+                else
+                    return Conflict(); // если пользователь почему-то не сохранился
             }
             else
-                return NotFound(); // если логин пароль или телефон не уникальны
+                return NotFound(); // если логин или телефон не уникальны
         }
     }
 }
