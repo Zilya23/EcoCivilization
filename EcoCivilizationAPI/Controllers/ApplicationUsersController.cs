@@ -77,10 +77,21 @@ namespace EcoCivilizationAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ApplicationUser>> PostApplicationUser(ApplicationUser applicationUser)
         {
-            _context.ApplicationUsers.Add(applicationUser);
-            await _context.SaveChangesAsync();
+            if(!ApplicationUserExists(applicationUser))
+            {
+                applicationUser.Date = DateTime.Now;
+                _context.ApplicationUsers.Add(applicationUser);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
+                return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
+            }
+            
+            return NotFound();
+        }
+
+        private bool ApplicationUserExists(ApplicationUser applicationUser)
+        {
+            return _context.ApplicationUsers.Any(u => u.IdUser == applicationUser.IdUser && u.IdApplication == applicationUser.IdApplication);
         }
 
         // DELETE: api/ApplicationUsers/5
