@@ -130,7 +130,7 @@ public partial class EcoCivilizationContext : DbContext
             entity.Property(e => e.IdCity).HasColumnName("ID_City");
             entity.Property(e => e.IdGender).HasColumnName("ID_Gender");
             entity.Property(e => e.IdRole).HasColumnName("ID_Role");
-            entity.Property(e => e.Login)
+            entity.Property(e => e.Email)
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.Name)

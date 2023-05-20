@@ -114,9 +114,9 @@ namespace EcoCivilizationAPI.Controllers
             return _context.Users.Any(e => e.Id == id);
         }
 
-        private bool UserExists(string login, string telephone)
+        private bool UserExists(string email, string telephone)
         {
-            return _context.Users.Any(e => e.Login == login || e.Telephone == telephone);
+            return _context.Users.Any(e => e.Email == email || e.Telephone == telephone);
         }
 
         // POST: api/Users/login
@@ -124,7 +124,7 @@ namespace EcoCivilizationAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Login([FromBody] User user)
         {
-            var userLog = await _context.Users.FirstOrDefaultAsync(x => x.Login == user.Login && x.Password == user.Password);
+            var userLog = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
             if (userLog == null)
             {
                 return NotFound();
@@ -151,13 +151,13 @@ namespace EcoCivilizationAPI.Controllers
                 IdCity = user.IdCity,
                 IdGender = user.IdGender,
                 IdRole = 2,
-                Login = user.Login,
+                Email = user.Email,
                 Password = user.Password,
                 DateRegist = DateTime.Now,
                 CountApplication = 0,
             };
 
-            if (!UserExists(user.Login, user.Telephone))
+            if (!UserExists(user.Email, user.Telephone))
             {
                 var userSave = await _context.Users.AddAsync(newUser);
                 var sucsessfull = await _context.SaveChangesAsync();

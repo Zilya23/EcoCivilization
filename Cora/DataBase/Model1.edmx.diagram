@@ -5,13 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0eccc201f63043708dc6109cb57f4837" Name="Diagram1">
-        <EntityTypeShape EntityType="EcoCivilizationModel.Application" Width="1.5" PointX="5.25" PointY="4.375" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Application_User" Width="1.5" PointX="7.5" PointY="5" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.City" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Gender" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.PhotoApplication" Width="1.5" PointX="7.5" PointY="8.125" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.Role" Width="1.5" PointX="0.75" PointY="8.5" />
-        <EntityTypeShape EntityType="EcoCivilizationModel.User" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Application" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Application_User" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.City" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Gender" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.PhotoApplication" Width="1.5" PointX="5.25" PointY="9.25" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.Role" Width="1.5" PointX="3.75" PointY="12.5" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EcoCivilizationModel.User" Width="1.5" PointX="6" PointY="4" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_City" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_User" />
         <AssociationConnector Association="EcoCivilizationModel.FK_Application_User_Application" />

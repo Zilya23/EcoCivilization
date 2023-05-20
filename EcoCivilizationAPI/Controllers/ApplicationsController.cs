@@ -28,8 +28,6 @@ namespace EcoCivilizationAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
         {
-            // Проверка корректности токена
-
             return await _context.Applications.Include(x => x.PhotoApplications)
                                               .Include(x => x.ApplicationUsers)
                                               .ToListAsync();

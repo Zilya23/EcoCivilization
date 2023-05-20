@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcoCivilizationAPI.Models;
+using EcoCivilizationAPI.Service;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -14,10 +15,12 @@ namespace EcoCivilizationAPI.Controllers
     public class ApplicationUsersController : ControllerBase
     {
         private readonly EcoCivilizationContext _context;
+        private TokenService _tokenService;
 
-        public ApplicationUsersController(EcoCivilizationContext context)
+        public ApplicationUsersController(EcoCivilizationContext context, TokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         // GET: api/ApplicationUsers
@@ -75,18 +78,26 @@ namespace EcoCivilizationAPI.Controllers
         // POST: api/ApplicationUsers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ApplicationUser>> PostApplicationUser(ApplicationUser applicationUser)
+        public async Task<ActionResult<ApplicationUser>> PostApplicationUser([FromHeader] string token, ApplicationUser applicationUser)
         {
-            if(!ApplicationUserExists(applicationUser))
-            {
-                applicationUser.Date = DateTime.Now;
-                _context.ApplicationUsers.Add(applicationUser);
-                await _context.SaveChangesAsync();
+            int userUD = _tokenService.CheckToken(token);
 
-                return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
+            if(userUD != 0)
+            {
+                applicationUser.IdUser = userUD;
+                if (!ApplicationUserExists(applicationUser))
+                {
+                    applicationUser.Date = DateTime.Now;
+                    _context.ApplicationUsers.Add(applicationUser);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
+                }
+
+                return NotFound();
             }
             
-            return NotFound();
+            return Unauthorized();
         }
 
         private bool ApplicationUserExists(ApplicationUser applicationUser)

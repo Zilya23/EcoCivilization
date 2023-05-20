@@ -16,10 +16,10 @@ namespace Cora.Functionss
             return users = new List<User>(bd_connection.connection.User.ToList());
         }
 
-        public static User AuthorizationUser(string login, string password)
+        public static User AuthorizationUser(string email, string password)
         {
             users = new List<User>(bd_connection.connection.User.ToList());
-            var userExsist = users.Where(user => user.Login == login && user.Password == password).FirstOrDefault();
+            var userExsist = users.Where(user => user.Email == email && user.Password == password).FirstOrDefault();
             if(userExsist != null)
             {
                 return userExsist;

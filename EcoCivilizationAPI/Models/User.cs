@@ -21,11 +21,12 @@ public partial class User
 
     public int? CountApplication { get; set; }
 
-    public string? Login { get; set; }
+    public string? Email { get; set; }
 
     public string? Password { get; set; }
 
     public DateTime? DateRegist { get; set; }
+    public string? UserPhoto { get; set; }
 
     public virtual ICollection<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
 

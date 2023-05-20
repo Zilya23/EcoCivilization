@@ -58,7 +58,7 @@ namespace EcoCivilization.Pages
             user.Telephone = tb_tel.Text.Trim();
             user.ID_Role = 2;
             user.Count_Application = 0;
-            user.Login = tb_log.Text.Trim();
+            user.Email = tb_log.Text.Trim();
             user.Password = tb_pass.Text.Trim();
             if(cb_City.SelectedItem != null)
             {
@@ -112,7 +112,7 @@ namespace EcoCivilization.Pages
                 MessageBox.Show("Заполните телефон");
                 return false;
             }
-            else if (user.Login.Length == 0)
+            else if (user.Email.Length == 0)
             {
                 MessageBox.Show("Заполните логин");
                 return false;
