@@ -99,6 +99,18 @@ namespace EcoCivilizationAPI.Controllers
             
             return Unauthorized();
         }
+        [Route("partExists")]
+        [HttpPost]
+        public ActionResult<ApplicationUser> PartExists([FromBody] ApplicationUser applicationUser)
+        {
+            ApplicationUser exists = _context.ApplicationUsers.FirstOrDefault(u => u.IdUser == applicationUser.IdUser && u.IdApplication == applicationUser.IdApplication);
+
+            if(exists != null)
+            {
+                return Ok(exists);
+            }
+            return NotFound();
+        }
 
         private bool ApplicationUserExists(ApplicationUser applicationUser)
         {
@@ -107,18 +119,25 @@ namespace EcoCivilizationAPI.Controllers
 
         // DELETE: api/ApplicationUsers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteApplicationUser(int id)
+        public async Task<IActionResult> DeleteApplicationUser([FromHeader] string token, int id)
         {
-            var applicationUser = await _context.ApplicationUsers.FindAsync(id);
-            if (applicationUser == null)
+            int userUD = _tokenService.CheckToken(token);
+
+            if (userUD != 0)
             {
-                return NotFound();
+                var applicationUser = await _context.ApplicationUsers.FindAsync(id);
+                if (applicationUser == null)
+                {
+                    return NotFound();
+                }
+
+                _context.ApplicationUsers.Remove(applicationUser);
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
 
-            _context.ApplicationUsers.Remove(applicationUser);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Unauthorized();
         }
 
         private bool ApplicationUserExists(int id)

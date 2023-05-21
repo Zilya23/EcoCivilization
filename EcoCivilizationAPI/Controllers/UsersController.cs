@@ -136,7 +136,20 @@ namespace EcoCivilizationAPI.Controllers
 
             return Ok(new {token = token});
         }
-       
+
+
+        // POST: api/Users/token
+        [Route("getIdentifier")]
+        [HttpPost]
+        public ActionResult<int> GetUserIdentifier([FromBody] User token)
+        {
+            var userID = _tokenService.CheckToken(token.UserPhoto);
+            if(userID != 0)
+                return Ok(userID);
+
+            return NotFound();
+        }
+
 
         // POST: api/Users/registration
         [Route("registration")]

@@ -43,7 +43,6 @@ namespace EcoCivilizationAPI.Service
                 var jwtSecurityToken = handler.ReadJwtToken(token);
                 var name = jwtSecurityToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 
-                //retutn userID
                 return Convert.ToInt32(name);
             }
             catch
