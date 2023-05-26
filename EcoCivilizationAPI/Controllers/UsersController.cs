@@ -12,6 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using EcoCivilizationAPI.Service;
+using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -181,6 +184,44 @@ namespace EcoCivilizationAPI.Controllers
             }
             else
                 return NotFound(); // если логин или телефон не уникальны
+        }
+
+        [Route("mail")]
+        [HttpPost]
+        public async Task<ActionResult<string>> SendMail([FromHeader] string token)
+        {
+            string senderEmail = "EcoCivilizationApp@yandex.com";
+            string senderPassword = "afiaedbnreftftdp";
+            string recipientEmail = "asunauki98@mail.ru";
+            string subject = "Hi";
+            string body = "GHjhgflgj";
+
+            SmtpClient smtpClient = new SmtpClient("smtp.yandex.com", 25);
+            smtpClient.EnableSsl = true;
+            var basicCredential = new NetworkCredential(senderEmail, senderPassword);
+            smtpClient.Credentials = basicCredential;
+            //smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
+
+            // Создание объекта MailMessage
+            MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail, subject, body);
+
+            try
+            {
+                //smtpClient.Authenticate(senderEmail, senderPassword);
+
+                // Создание объекта MailMessage
+                mailMessage = new MailMessage(senderEmail, recipientEmail, subject, body);
+
+                // Отправка письма
+                smtpClient.Send(mailMessage);
+                Console.WriteLine("Email sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error sending email: " + ex.Message);
+            }
+
+            return Ok(token);
         }
     }
 }
