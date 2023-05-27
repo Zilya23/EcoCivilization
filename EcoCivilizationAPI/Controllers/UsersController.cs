@@ -188,13 +188,10 @@ namespace EcoCivilizationAPI.Controllers
 
         [Route("mail")]
         [HttpPost]
-        public async Task<ActionResult<string>> SendMail([FromHeader] string token)
+        public ActionResult<string> SendMail([FromHeader] string token, Mail mail)
         {
             string senderEmail = "EcoCivilizationApp@yandex.com";
             string senderPassword = "afiaedbnreftftdp";
-            string recipientEmail = "asunauki98@mail.ru";
-            string subject = "Hi";
-            string body = "GHjhgflgj";
 
             SmtpClient smtpClient = new SmtpClient("smtp.yandex.com", 25);
             smtpClient.EnableSsl = true;
@@ -203,25 +200,31 @@ namespace EcoCivilizationAPI.Controllers
             //smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
 
             // Создание объекта MailMessage
-            MailMessage mailMessage = new MailMessage(senderEmail, recipientEmail, subject, body);
+            MailMessage mailMessage = new MailMessage(senderEmail, mail._recipientEmail, mail._subject, mail._body);
 
             try
             {
-                //smtpClient.Authenticate(senderEmail, senderPassword);
-
                 // Создание объекта MailMessage
-                mailMessage = new MailMessage(senderEmail, recipientEmail, subject, body);
+                //mailMessage = new MailMessage(senderEmail, mail._recipientEmail, mail._subject, mail._body);
 
                 // Отправка письма
                 smtpClient.Send(mailMessage);
                 Console.WriteLine("Email sent successfully.");
+                return Ok();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error sending email: " + ex.Message);
+                return BadRequest(ex.Message);
             }
-
-            return Ok(token);
         }
+
+        public class Mail 
+        {
+            public string _recipientEmail { get; set; }
+            public string _subject { get; set; }
+            public string _body { get; set; }
+        }
+
     }
 }
