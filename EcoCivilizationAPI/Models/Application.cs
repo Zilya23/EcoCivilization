@@ -19,7 +19,7 @@ public partial class Application
 
     public int? IdCity { get; set; }
 
-    public int? Iduser { get; set; }
+    public int? IdUser { get; set; }
 
     public TimeSpan? TimeStart { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Application
 
     public virtual City? IdCityNavigation { get; set; }
 
-    public virtual User? IduserNavigation { get; set; }
+    public virtual User? IdUserNavigation { get; set; }
 
     public virtual ICollection<PhotoApplication> PhotoApplications { get; } = new List<PhotoApplication>();
 }

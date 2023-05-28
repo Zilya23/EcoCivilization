@@ -99,10 +99,15 @@ namespace EcoCivilizationAPI.Controllers
             
             return Unauthorized();
         }
+
         [Route("partExists")]
         [HttpPost]
         public ActionResult<ApplicationUser> PartExists([FromBody] ApplicationUser applicationUser)
         {
+            var i = _context.Applications.FirstOrDefault(x => x.Id == applicationUser.IdApplication);
+            if (i.IdUser == applicationUser.IdUser)
+                return NotFound();
+
             ApplicationUser exists = _context.ApplicationUsers.FirstOrDefault(u => u.IdUser == applicationUser.IdUser && u.IdApplication == applicationUser.IdApplication);
 
             if(exists != null)
@@ -110,6 +115,28 @@ namespace EcoCivilizationAPI.Controllers
                 return Ok(exists);
             }
             return NotFound();
+        }
+
+        [Route("UserPartApplication")]
+        [HttpPost]
+        public ActionResult<IEnumerable<Application>> GetUserPartApplication([FromHeader] string token, User user)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                var userPartApplication = _context.ApplicationUsers.Where(x => x.IdUser == user.Id).ToList();
+                var userApplication = new List<Application>();
+
+                foreach (var item in userPartApplication)
+                {
+                    userApplication.Add(_context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x=> x.Id == item.IdApplication)
+                                              .FirstOrDefault());
+                }
+
+                return Ok(userApplication);
+            }
+            return Unauthorized();
         }
 
         private bool ApplicationUserExists(ApplicationUser applicationUser)

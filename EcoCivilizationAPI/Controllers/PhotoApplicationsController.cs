@@ -74,6 +74,8 @@ namespace EcoCivilizationAPI.Controllers
 
         // POST: api/PhotoApplications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        [Route("create")]
         [HttpPost]
         public async Task<ActionResult<PhotoApplication>> PostPhotoApplication(PhotoApplication photoApplication)
         {

@@ -50,6 +50,20 @@ namespace EcoCivilizationAPI.Controllers
             return application;
         }
 
+        [Route("UserCreateApplication")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Application>>> GetUserCreateApplication([FromHeader] string token, User user)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                return await _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x => x.IdUser == user.Id)
+                                              .ToListAsync();
+            }
+            return Unauthorized();
+        }
+
         // PUT: api/Applications/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -83,18 +97,19 @@ namespace EcoCivilizationAPI.Controllers
 
         // POST: api/Applications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Route("create")]
         [HttpPost]
         public async Task<ActionResult<Application>> PostApplication([FromHeader] string token, Application application)
         {
             if(Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
+                application.TimeStart = new TimeSpan(Convert.ToInt32(application.Date.Value.Hour), Convert.ToInt32(application.Date.Value.Minute), 0);
                 _context.Applications.Add(application);
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetApplication", new { id = application.Id }, application);
             }
             return Unauthorized();
-            
         }
 
         // DELETE: api/Applications/5

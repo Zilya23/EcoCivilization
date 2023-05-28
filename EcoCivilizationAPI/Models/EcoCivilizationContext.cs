@@ -31,7 +31,7 @@ public partial class EcoCivilizationContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=10.3.6.141;Database=EcoCivilization;User Id=sa;password=123qwe;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-BLMHDHN\\SQL;Database=EcoCivilization;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,7 +44,7 @@ public partial class EcoCivilizationContext : DbContext
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.Description).IsUnicode(false);
             entity.Property(e => e.IdCity).HasColumnName("ID_City");
-            entity.Property(e => e.Iduser).HasColumnName("IDUser");
+            entity.Property(e => e.IdUser).HasColumnName("IDUser");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -54,8 +54,8 @@ public partial class EcoCivilizationContext : DbContext
                 .HasForeignKey(d => d.IdCity)
                 .HasConstraintName("FK_Application_City");
 
-            entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Applications)
-                .HasForeignKey(d => d.Iduser)
+            entity.HasOne(d => d.IdUserNavigation).WithMany(p => p.Applications)
+                .HasForeignKey(d => d.IdUser)
                 .HasConstraintName("FK_Application_User");
         });
 
