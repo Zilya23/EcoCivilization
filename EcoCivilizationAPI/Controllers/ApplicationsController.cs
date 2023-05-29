@@ -47,6 +47,8 @@ namespace EcoCivilizationAPI.Controllers
                 return NotFound();
             }
 
+            application.Date = new DateTime(application.Date.Value.Year, application.Date.Value.Month, application.Date.Value.Day, application.TimeStart.Value.Hours, application.TimeStart.Value.Minutes, 0);
+
             return application;
         }
 
