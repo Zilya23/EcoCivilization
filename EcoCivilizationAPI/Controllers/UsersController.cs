@@ -171,6 +171,8 @@ namespace EcoCivilizationAPI.Controllers
                 Password = user.Password,
                 DateRegist = DateTime.Now,
                 CountApplication = 0,
+                IsDelete= false,
+                IsBanned= false,
             };
 
             if (!UserExists(user.Email, user.Telephone))

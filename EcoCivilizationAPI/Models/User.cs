@@ -27,7 +27,9 @@ public partial class User
 
     public DateTime? DateRegist { get; set; }
     public string? UserPhoto { get; set; }
-
+    public bool? IsDelete { get; set; }
+    public bool? IsBanned { get; set; }
+    
     public virtual ICollection<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
 
     public virtual ICollection<Application> Applications { get; } = new List<Application>();

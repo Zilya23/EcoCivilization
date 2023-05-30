@@ -106,6 +106,9 @@ namespace EcoCivilizationAPI.Controllers
             if(Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
                 application.TimeStart = new TimeSpan(Convert.ToInt32(application.Date.Value.Hour), Convert.ToInt32(application.Date.Value.Minute), 0);
+                application.AppealCount = 0;
+                application.IsBanned= false;
+                application.IsDelete= false;
                 _context.Applications.Add(application);
                 await _context.SaveChangesAsync();
 

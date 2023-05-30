@@ -22,6 +22,9 @@ public partial class Application
     public int? IdUser { get; set; }
 
     public TimeSpan? TimeStart { get; set; }
+    public bool? IsDelete { get; set; }
+    public bool? IsBanned { get; set; }
+    public int? AppealCount { get; set; }
 
     public virtual ICollection<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
 
