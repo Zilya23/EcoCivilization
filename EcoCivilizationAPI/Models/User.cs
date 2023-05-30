@@ -19,7 +19,7 @@ public partial class User
 
     public int? IdRole { get; set; }
 
-    public int? CountApplication { get; set; }
+    public int? CountBannedApplication { get; set; }
 
     public string? Email { get; set; }
 

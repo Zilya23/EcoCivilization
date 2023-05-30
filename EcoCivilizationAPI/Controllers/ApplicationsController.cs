@@ -33,6 +33,26 @@ namespace EcoCivilizationAPI.Controllers
                                               .ToListAsync();
         }
 
+        [Route("GetСurrentApplication")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Application>>> GetСurrentApplications()
+        {
+            return await _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x => x.IsBanned != true && x.IsDelete!= true)
+                                              .ToListAsync();
+        }
+
+        [Route("GetCheckBunnetApplication")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Application>>> GetCheckBunnetApplications()
+        {
+            return await _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x => x.AppealCount > 0 && x.IsBanned != true)
+                                              .ToListAsync();
+        }
+
         // GET: api/Applications/5
         [HttpGet("{id}")]
         public ActionResult<Application> GetApplication(int id)

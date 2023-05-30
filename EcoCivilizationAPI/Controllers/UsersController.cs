@@ -40,6 +40,22 @@ namespace EcoCivilizationAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
+        [Route("GetСurrentUser")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<User>>> GetСurrentUsers()
+        {
+            return await _context.Users.Where(x => x.IsBanned != true && x.IsDelete != true)
+                                              .ToListAsync();
+        }
+
+        [Route("GetCheckBunnetUser")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<User>>> GetCheckBunnetUsers()
+        {
+            return await _context.Users.Where(x => x.IsBanned != true && x.CountBannedApplication > 0).ToListAsync();
+
+        }
+
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
