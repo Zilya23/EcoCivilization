@@ -100,7 +100,7 @@ namespace EcoCivilizationAPI.Controllers
             return Unauthorized();
         }
 
-        [Route("partExists")]
+        [Route("PartExists")]
         [HttpPost]
         public ActionResult<ApplicationUser> PartExists([FromBody] ApplicationUser applicationUser)
         {
@@ -130,7 +130,7 @@ namespace EcoCivilizationAPI.Controllers
                 {
                     userApplication.Add(_context.Applications.Include(x => x.PhotoApplications)
                                               .Include(x => x.ApplicationUsers)
-                                              .Where(x=> x.Id == item.IdApplication)
+                                              .Where(x=> x.Id == item.IdApplication && x.IsDelete != true && x.IsBanned != true)
                                               .FirstOrDefault());
                 }
 

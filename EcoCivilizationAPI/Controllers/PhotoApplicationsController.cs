@@ -41,41 +41,10 @@ namespace EcoCivilizationAPI.Controllers
             return photoApplication;
         }
 
-        // PUT: api/PhotoApplications/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPhotoApplication(int id, PhotoApplication photoApplication)
-        {
-            if (id != photoApplication.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(photoApplication).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PhotoApplicationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/PhotoApplications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
-        [Route("create")]
+        [Route("Create")]
         [HttpPost]
         public async Task<ActionResult<PhotoApplication>> PostPhotoApplication(PhotoApplication photoApplication)
         {
@@ -99,11 +68,6 @@ namespace EcoCivilizationAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool PhotoApplicationExists(int id)
-        {
-            return _context.PhotoApplications.Any(e => e.Id == id);
         }
     }
 }

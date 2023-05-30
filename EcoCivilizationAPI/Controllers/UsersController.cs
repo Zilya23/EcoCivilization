@@ -186,7 +186,7 @@ namespace EcoCivilizationAPI.Controllers
                 Email = user.Email,
                 Password = user.Password,
                 DateRegist = DateTime.Now,
-                CountApplication = 0,
+                CountBannedApplication = 0,
                 IsDelete= false,
                 IsBanned= false,
             };
@@ -204,7 +204,7 @@ namespace EcoCivilizationAPI.Controllers
                 return NotFound(); // если логин или телефон не уникальны
         }
 
-        [Route("mail")]
+        [Route("Mail")]
         [HttpPost]
         public ActionResult<string> SendMail([FromHeader] string token, Mail mail)
         {

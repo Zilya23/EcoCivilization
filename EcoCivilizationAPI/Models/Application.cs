@@ -26,11 +26,11 @@ public partial class Application
     public bool? IsBanned { get; set; }
     public int? AppealCount { get; set; }
 
-    public virtual ICollection<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
+    public virtual ICollection<ApplicationUser>? ApplicationUsers { get; } = new List<ApplicationUser>();
 
     public virtual City? IdCityNavigation { get; set; }
 
     public virtual User? IdUserNavigation { get; set; }
 
-    public virtual ICollection<PhotoApplication> PhotoApplications { get; } = new List<PhotoApplication>();
+    public virtual ICollection<PhotoApplication>? PhotoApplications { get; } = new List<PhotoApplication>();
 }

@@ -80,7 +80,7 @@ namespace EcoCivilizationAPI.Controllers
             {
                 return await _context.Applications.Include(x => x.PhotoApplications)
                                               .Include(x => x.ApplicationUsers)
-                                              .Where(x => x.IdUser == user.Id)
+                                              .Where(x => x.IdUser == user.Id && x.IsDelete != true && x.IsBanned != true)
                                               .ToListAsync();
             }
             return Unauthorized();
@@ -89,37 +89,49 @@ namespace EcoCivilizationAPI.Controllers
         // PUT: api/Applications/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutApplication(int id, Application application)
+        public async Task<IActionResult> PutApplication([FromHeader]string token, int id, Application application)
         {
-            if (id != application.Id)
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
-                return BadRequest();
-            }
-
-            _context.Entry(application).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApplicationExists(id))
+                if (id != application.Id)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
-                else
+
+                Application editApplication = _context.Applications.FirstOrDefault(x => x.Id == id);
+                editApplication.Name = application.Name;
+                editApplication.Date = application.Date;
+                editApplication.TimeStart = new TimeSpan(Convert.ToInt32(application.Date.Value.Hour), Convert.ToInt32(application.Date.Value.Minute), 0);
+                editApplication.CountUser= application.CountUser;
+                editApplication.Place= application.Place;
+                editApplication.Description = application.Description;
+                editApplication.IdCity = application.IdCity;
+
+                _context.Entry(editApplication).State = EntityState.Modified;
+
+                try
                 {
-                    throw;
+                    await _context.SaveChangesAsync();
+                    return Ok(editApplication);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return NoContent();
+            return Unauthorized();
         }
 
         // POST: api/Applications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Route("create")]
+        [Route("Create")]
         [HttpPost]
         public async Task<ActionResult<Application>> PostApplication([FromHeader] string token, Application application)
         {
@@ -133,6 +145,38 @@ namespace EcoCivilizationAPI.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetApplication", new { id = application.Id }, application);
+            }
+            return Unauthorized();
+        }
+
+        [Route("Delete")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteApplication([FromHeader] string token, Application application)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+
+                Application editApplication = _context.Applications.FirstOrDefault(x => x.Id == application.Id);
+                editApplication.IsDelete = true;
+
+                _context.Entry(editApplication).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok(editApplication);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationExists(application.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
             return Unauthorized();
         }

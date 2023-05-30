@@ -125,7 +125,7 @@ public partial class EcoCivilizationContext : DbContext
             entity.ToTable("User");
 
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.CountApplication).HasColumnName("Count_Application");
+            entity.Property(e => e.CountBannedApplication).HasColumnName("CountBannedApplication");
             entity.Property(e => e.DateRegist).HasColumnType("date");
             entity.Property(e => e.IdCity).HasColumnName("ID_City");
             entity.Property(e => e.IdGender).HasColumnName("ID_Gender");
