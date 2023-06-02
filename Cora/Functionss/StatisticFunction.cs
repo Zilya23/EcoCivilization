@@ -51,7 +51,7 @@ namespace Cora.Functionss
             return bd_connection.connection.User.Count();
 ;       }
 
-        //Количество пользователей в приложении всего
+        //Количество заявок в приложении всего
         public static int CountApplication()
         {
             return bd_connection.connection.Application.Count();

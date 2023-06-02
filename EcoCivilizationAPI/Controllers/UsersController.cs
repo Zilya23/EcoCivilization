@@ -208,33 +208,44 @@ namespace EcoCivilizationAPI.Controllers
         [HttpPost]
         public ActionResult<string> SendMail([FromHeader] string token, Mail mail)
         {
-            string senderEmail = "EcoCivilizationApp@yandex.com";
-            string senderPassword = "afiaedbnreftftdp";
-
-            SmtpClient smtpClient = new SmtpClient("smtp.yandex.com", 25);
-            smtpClient.EnableSsl = true;
-            var basicCredential = new NetworkCredential(senderEmail, senderPassword);
-            smtpClient.Credentials = basicCredential;
-            //smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
-
-            // Создание объекта MailMessage
-            MailMessage mailMessage = new MailMessage(senderEmail, mail._recipientEmail, mail._subject, mail._body);
-
-            try
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
-                // Создание объекта MailMessage
-                //mailMessage = new MailMessage(senderEmail, mail._recipientEmail, mail._subject, mail._body);
+                string senderEmail = "EcoCivilizationApp@yandex.com";
+                string senderPassword = "afiaedbnreftftdp";
 
-                // Отправка письма
-                smtpClient.Send(mailMessage);
-                Console.WriteLine("Email sent successfully.");
+                SmtpClient smtpClient = new SmtpClient("smtp.yandex.com", 25);
+                smtpClient.EnableSsl = true;
+                var basicCredential = new NetworkCredential(senderEmail, senderPassword);
+                smtpClient.Credentials = basicCredential;
+
+                // Создание объекта MailMessage
+                MailMessage mailMessage = new MailMessage(senderEmail, mail._recipientEmail, mail._subject, mail._body);
+
+                try
+                {
+                    // Отправка письма
+                    smtpClient.Send(mailMessage);
+                    Console.WriteLine("Email sent successfully.");
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error sending email: " + ex.Message);
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Unauthorized();
+        }
+
+        [Route("Statistic")]
+        [HttpPost]
+        public ActionResult<string> GetStatistic([FromHeader] string token, User user)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
                 return Ok();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error sending email: " + ex.Message);
-                return BadRequest(ex.Message);
-            }
+            return Unauthorized();
         }
 
         public class Mail 
@@ -242,6 +253,20 @@ namespace EcoCivilizationAPI.Controllers
             public string _recipientEmail { get; set; }
             public string _subject { get; set; }
             public string _body { get; set; }
+        }
+
+        public class Statistic
+        {
+            public int IdUser { get; set; }
+            public int CountApplication { get; set; } // количество событий созданных пользователем
+            public int CountPartApplication { get; set; } // количество участий пользователя
+            public int CountUserCityApplication { get; set; } // количество событий в городе пользователя
+            public int CountApplicationThisYear { get; set; } // количество событий созданных в этом году
+            public int CountUserInCity { get; set; } // количество пользователей в городе пользователя
+            public int CountActivDays { get; set; } // количество дней с регистрации пользователя
+            public int CountUserInApp { get; set; } // количество пользователей в приложении
+            public int CountTopUserPlace { get; set; } // место пользователя в топе по пользователям
+            public int CountTopUserCityPlace { get; set; } // место города пользователя в топе по городам
         }
 
     }

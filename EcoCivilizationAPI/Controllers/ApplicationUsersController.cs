@@ -44,6 +44,20 @@ namespace EcoCivilizationAPI.Controllers
             return applicationUser;
         }
 
+        [Route("GetPartsUser")]
+        [HttpGet]
+        public ActionResult<IEnumerable<ApplicationUser>> GetPartUserApplication(int id)
+        {
+            var applicationUser =_context.ApplicationUsers.Where(x => x.IdApplication == id).Include(x => x.IdUserNavigation).ToList();
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(applicationUser);
+        }
+
         // PUT: api/ApplicationUsers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
