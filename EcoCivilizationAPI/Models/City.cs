@@ -9,6 +9,8 @@ public partial class City
 
     public string? Name { get; set; }
 
+    public int? TopPlace = 0;
+
     public virtual ICollection<Application> Applications { get; } = new List<Application>();
 
     public virtual ICollection<User> Users { get; } = new List<User>();

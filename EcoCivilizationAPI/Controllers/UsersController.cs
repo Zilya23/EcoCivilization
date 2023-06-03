@@ -239,11 +239,44 @@ namespace EcoCivilizationAPI.Controllers
 
         [Route("Statistic")]
         [HttpPost]
-        public ActionResult<string> GetStatistic([FromHeader] string token, User user)
+        public ActionResult<UserStatistic> GetStatistic([FromHeader] string token, User user)
         {
+            UserStatistic statistic = new UserStatistic();
+            var userForStatistic = _context.Users.FirstOrDefault(x => x.Id == user.Id);
+
             if (Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
-                return Ok();
+                statistic.IdUser = user.Id;
+                statistic.CountApplication = _context.Applications.Where(x=> x.IdUser == user.Id).Count();
+                statistic.CountPartApplication = _context.ApplicationUsers.Where(x=> x.IdUser == user.Id).Count();
+                statistic.CountUserCityApplication = _context.Applications.Where(x=> x.IdCity == userForStatistic.IdCity).Count();
+                statistic.CountApplicationThisYear = _context.Applications.Where(x => ((DateTime)(x.Date)).Year == DateTime.Now.Year).Count();
+                statistic.CountUserInCity = _context.Users.Where(x => x.IdCity == userForStatistic.IdCity).Count();
+                statistic.CountActivDays = (int)(DateTime.Now - userForStatistic.DateRegist).Value.TotalDays;
+                statistic.CountUserInApp = _context.Users.Where(x => x.IsDelete == false && x.IsBanned == false).Count();
+
+                //Делаем топ юзеров
+                List<User> users = _context.Users.Where(x=> x.IsBanned == false && x.IsDelete == false).ToList();
+                foreach(var us in users)
+                {
+                    us.IdRole = _context.Applications.Where(x => x.IdUser == us.Id).Count();
+                }
+                users = users.OrderByDescending(x=> x.IdRole).ToList();
+
+                List <City> cities = _context.Cities.ToList();
+
+                foreach (var city in cities)
+                {
+                    city.TopPlace = _context.Applications.Where(x=> x.IdCity == city.Id).Count();
+                }
+
+                cities = cities.OrderByDescending(x=> x.TopPlace).ToList();
+
+                statistic.CountTopUserPlace = users.FindIndex(x=> x.Id == userForStatistic.Id) + 1;
+                statistic.CountTopUserCityPlace = cities.FindIndex(x=> x.Id == userForStatistic.IdCity) + 1;
+                statistic.UsersTop = users;
+                statistic.CityTop= cities;
+                return Ok(statistic);
             }
             return Unauthorized();
         }
@@ -255,7 +288,7 @@ namespace EcoCivilizationAPI.Controllers
             public string _body { get; set; }
         }
 
-        public class Statistic
+        public class UserStatistic
         {
             public int IdUser { get; set; }
             public int CountApplication { get; set; } // количество событий созданных пользователем
@@ -267,7 +300,9 @@ namespace EcoCivilizationAPI.Controllers
             public int CountUserInApp { get; set; } // количество пользователей в приложении
             public int CountTopUserPlace { get; set; } // место пользователя в топе по пользователям
             public int CountTopUserCityPlace { get; set; } // место города пользователя в топе по городам
-        }
 
+            public List<User> UsersTop { get; set; }
+            public List<City> CityTop { get; set; }
+        }
     }
 }

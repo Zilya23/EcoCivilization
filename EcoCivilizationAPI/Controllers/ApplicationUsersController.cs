@@ -44,6 +44,7 @@ namespace EcoCivilizationAPI.Controllers
             return applicationUser;
         }
 
+        // Выдает какие пользователи подписались на событие и инфа о них
         [Route("GetPartsUser")]
         [HttpGet]
         public ActionResult<IEnumerable<ApplicationUser>> GetPartUserApplication(int id)
