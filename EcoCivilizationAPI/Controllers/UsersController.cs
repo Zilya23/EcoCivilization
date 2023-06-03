@@ -15,6 +15,7 @@ using EcoCivilizationAPI.Service;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using static EcoCivilizationAPI.Controllers.UsersController;
 
 namespace EcoCivilizationAPI.Controllers
 {
@@ -58,9 +59,9 @@ namespace EcoCivilizationAPI.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public  ActionResult<User> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user =  _context.Users.Include(x=> x.IdCityNavigation).FirstOrDefault(x=> x.Id == id);
 
             if (user == null)
             {
@@ -73,32 +74,52 @@ namespace EcoCivilizationAPI.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser([FromHeader] string token, int id, User user)
         {
-            if (id != user.Id)
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
             {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                
+                if (id != user.Id)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
-                else
-                {
-                    throw;
-                }
-            }
+                User newUser = _context.Users.First(x => x.Id == user.Id);
+                var users = _context.Users.ToList();
+                users.Remove(newUser);
 
-            return NoContent();
+                bool exists = users.Any(e => e.Email == user.Email || e.Telephone == user.Telephone);
+                if(!exists)
+                {
+                    newUser.Name = user.Name;
+                    newUser.Email = user.Email;
+                    newUser.Surname= user.Surname;
+                    newUser.Telephone= user.Telephone;
+                    newUser.IdGender= user.IdGender;
+                    newUser.IdCity= user.IdCity;
+                    newUser.Password= user.Password;
+                    _context.Entry(newUser).State = EntityState.Modified;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!UserExists(id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return NoContent();
+                }
+                return Ok("UserNoExists");
+            }
+            return Unauthorized();
         }
 
         // POST: api/Users
