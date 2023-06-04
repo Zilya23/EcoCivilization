@@ -43,6 +43,28 @@ namespace EcoCivilizationAPI.Controllers
                                               .ToListAsync();
         }
 
+        [Route("GetFilteredApplication")]
+        [HttpPost]
+        public ActionResult<IEnumerable<Application>> GetFilteredApplications(Application application)
+        {
+            var filterApplication = _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x => x.IsBanned != true && x.IsDelete != true)
+                                              .ToList();
+            if(application.Name.Length != 0)
+            {
+                filterApplication = filterApplication.Where(x=> x.Name.Contains(application.Name)).ToList();
+            }
+
+            if(application.IdCity > 0)
+            {
+                filterApplication = filterApplication.Where(x => x.IdCity == application.IdCity).ToList();
+            }
+
+            return filterApplication;
+        }
+
+
         [Route("GetCheckBunnetApplication")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Application>>> GetCheckBunnetApplications()
