@@ -108,6 +108,20 @@ namespace EcoCivilizationAPI.Controllers
             return Unauthorized();
         }
 
+        [Route("UserAllCreateApplication")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Application>>> GetUserAllCreateApplication([FromHeader] string token, User user)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                return await _context.Applications.Include(x => x.PhotoApplications)
+                                              .Include(x => x.ApplicationUsers)
+                                              .Where(x => x.IdUser == user.Id)
+                                              .ToListAsync();
+            }
+            return Unauthorized();
+        }
+
         // PUT: api/Applications/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -139,6 +153,82 @@ namespace EcoCivilizationAPI.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ApplicationExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return Unauthorized();
+        }
+
+        [Route("BunnedApplication")]
+        [HttpPost]
+        public async Task<IActionResult> BunnedApplication([FromHeader] string token, Application application)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                if(application.Id == null)
+                    return NotFound();
+
+                Application editApplication = _context.Applications.FirstOrDefault(x => x.Id == application.Id);
+                editApplication.IsBanned = application.IsBanned;
+
+                _context.Entry(editApplication).State = EntityState.Modified;
+
+                User appealUser = _context.Users.FirstOrDefault(x => x.Id == editApplication.IdUser);
+                if (editApplication.IsBanned == false)
+                    appealUser.CountBannedApplication = appealUser.CountBannedApplication - 1;
+                else
+                    appealUser.CountBannedApplication = appealUser.CountBannedApplication + 1;
+
+                _context.Entry(appealUser).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok(editApplication);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationExists(application.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return Unauthorized();
+        }
+
+        [Route("AppealApplication")]
+        [HttpPost]
+        public async Task<IActionResult> AppealApplication([FromHeader] string token, Application application)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                if (application.Id == null)
+                    return NotFound();
+
+                Application editApplication = _context.Applications.FirstOrDefault(x => x.Id == application.Id);
+                editApplication.AppealCount = editApplication.AppealCount + 1;
+
+                _context.Entry(editApplication).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok(editApplication);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationExists(application.Id))
                     {
                         return NotFound();
                     }

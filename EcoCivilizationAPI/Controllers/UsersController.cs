@@ -38,7 +38,9 @@ namespace EcoCivilizationAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(x=> x.Applications)
+                .Include(x=> x.IdCityNavigation)
+                .Where(x=> x.IdRole == 2).ToListAsync();
         }
 
         [Route("GetСurrentUser")]
@@ -118,6 +120,40 @@ namespace EcoCivilizationAPI.Controllers
                     return NoContent();
                 }
                 return Ok("UserNoExists");
+            }
+            return Unauthorized();
+        }
+
+        [Route("BunnedUser")]
+        [HttpPost]
+        public async Task<IActionResult> BunnedUser([FromHeader] string token, User user)
+        {
+            if (Convert.ToBoolean(_tokenService.CheckToken(token)))
+            {
+                if (user.Id == null)
+                    return NotFound();
+
+                User newUser = _context.Users.First(x => x.Id == user.Id);
+                newUser.IsBanned = user.IsBanned;
+                _context.Entry(newUser).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
             }
             return Unauthorized();
         }
