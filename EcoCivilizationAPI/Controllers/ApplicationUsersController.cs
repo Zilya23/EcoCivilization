@@ -182,6 +182,33 @@ namespace EcoCivilizationAPI.Controllers
             return Unauthorized();
         }
 
+        [Route("AdminDeletePart")]
+        [HttpPost]
+        public IActionResult DeleteUserPart([FromHeader] string token, int id)
+        {
+            int userUD = _tokenService.CheckToken(token);
+
+            if (userUD != 0)
+            {
+                var applicationUser =  _context.ApplicationUsers.Where(x => x.IdApplication == id).ToList(); ;
+                if (applicationUser == null)
+                {
+                    return Ok('g');
+                }
+
+                foreach(var part in applicationUser)
+                {
+                    _context.ApplicationUsers.Remove(part);
+                }
+                
+                 _context.SaveChangesAsync();
+
+                return Ok();
+            }
+
+            return Unauthorized();
+        }
+
         private bool ApplicationUserExists(int id)
         {
             return _context.ApplicationUsers.Any(e => e.Id == id);
